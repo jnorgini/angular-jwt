@@ -1,0 +1,21 @@
+<div class="content" role="main">
+  <h2>Register</h2>
+  <div>username: <input [(ngModel)]="registerDto.username" /></div>
+  <div>email: <input [(ngModel)]="registerDto.email" /></div>
+  <div>first name: <input [(ngModel)]="registerDto.firstName" /></div>
+  <div>last name: <input [(ngModel)]="registerDto.lastName" /></div>
+  <div>password: <input [(ngModel)]="registerDto.password" /></div>
+  <div>role: <input [(ngModel)]="registerDto.role" /></div>
+  <div>status: <input [(ngModel)]="registerDto.status" /></div>
+  <button (click)="register(registerDto)">Register</button>
+
+  <hr />
+
+  <h2>Login</h2>
+  <div>username: <input [(ngModel)]="loginDto.login" /></div>
+  <div>password: <input [(ngModel)]="loginDto.password" /></div>
+  <button (click)="login(loginDto)">Login</button>
+
+  <hr />
+
+</div>
