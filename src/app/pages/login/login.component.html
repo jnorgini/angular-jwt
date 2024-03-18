@@ -1,0 +1,19 @@
+<div class="lg:w-4/12 p-10 shadow-lg mx-auto m-20">
+  <h3 class="text-3xl text-center font-semibold py-5">Login</h3>
+  <form class="flex flex-col">
+    <div class="flex flex-col mt-4 mb-1">
+      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.login" name="login" type="text"
+        placeholder="Username" (focus)="touchedLogin = true" (blur)="touchedLogin = false">
+      <span class="text-red-500" *ngIf="touchedLogin">*Username is required</span>
+    </div>
+    <div class="flex flex-col mt-4 mb-1">
+      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.password" name="lastName" type="text"
+        placeholder="LastName" (focus)="touchedPassword = true" (blur)="touchedPassword = false">
+      <span class="text-red-500" *ngIf="touchedPassword">*Password is required</span>
+    </div>
+    <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login(loginDto)">Submit</button>
+  </form>
+  <div class="flex justify-center mt-5">
+    <span>You Don't Have an Account?</span> <a class="text-indigo-600 ml-2 cursor-pointer" routerLink="/register">Register Here</a>
+  </div>
+</div>

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Login } from '../models/Login';
-import { Register } from '../models/Register';
-import { JwtAuth } from '../models/JwtAuth';
-import { AuthenticationService } from '../services/authentication.service';
-import { User } from '../models/User';
+import { Login } from '../../models/Login';
+import { Register } from '../../models/Register';
+import { JwtAuth } from '../../models/JwtAuth';
+import { AuthenticationService } from '../../services/authentication.service';
+import { User } from '../../models/User';
 import { Router } from '@angular/router';
 
 @Component({
@@ -17,6 +17,8 @@ export class LoginComponent {
   jwtDto = new JwtAuth();
   currentUser: User | undefined;
   currentUserVisible: boolean = false;
+  touchedLogin = false;
+  touchedPassword = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -31,7 +33,7 @@ export class LoginComponent {
       localStorage.setItem('jwtToken', jwtDto.token);
       console.log('Token: ', jwtDto.token, '\nRefreshToken: ', jwtDto.refreshToken, '\nUsername: ', jwtDto.username);
       this.userDetails();
-      this.router.navigate(['/main']);
+      this.router.navigate(['/home']);
     });
   }
 
