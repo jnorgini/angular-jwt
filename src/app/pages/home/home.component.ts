@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../models/User';
-import { AuthenticationService } from '../services/authentication.service';
+import { User } from '../../models/User';
+import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-main',
-  templateUrl: './main.component.html',
-  styleUrls: ['./main.component.css']
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrl: './home.component.css'
 })
-export class MainComponent implements OnInit {
+export class HomeComponent implements OnInit {
   currentUser: User | null = null;
   currentUserVisible: boolean = false;
 
@@ -26,10 +26,6 @@ export class MainComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
     });
-  }
-
-  logout() {
-    this.router.navigate(['/login']);
   }
 
 }

@@ -1,0 +1,14 @@
+<hr />
+
+<button class="bg-indigo-500 ml-2 p-2 rounded mt-3 text-white" (click)="toggleUserDetails()">Current User
+  Details</button>
+<div class="ml-2" *ngIf="currentUserVisible">
+  <p><span class="font-semibold">Username:</span> {{ currentUser?.username }}</p>
+  <p><span class="font-semibold">Email:</span> {{ currentUser?.email }}</p>
+  <p><span class="font-semibold">First Name:</span> {{ currentUser?.firstName }}</p>
+  <p><span class="font-semibold">Last Name:</span> {{ currentUser?.lastName }}</p>
+  <p><span class="font-semibold">Status:</span> {{ currentUser?.status }}</p>
+  <p><span class="font-semibold">Role:</span> {{ currentUser?.role }}</p>
+</div>
+
+<hr />
