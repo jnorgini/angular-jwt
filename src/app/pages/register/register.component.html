@@ -3,43 +3,53 @@
   <form class="flex flex-col">
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.firstName" name="firstName" type="text"
-        placeholder="FirstName" (focus)="touchedFirstname = true" (blur)="touchedFirstname = false">
-      <span class="text-red-500" *ngIf="touchedFirstname">*FirstName is required</span>
+        placeholder="FirstName" [ngClass]="{'border-red-500': validation && !registerDto.firstName }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.firstName">*FirstName is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.lastName" name="lastName" type="text"
-        placeholder="LastName" (focus)="touchedLastname = true" (blur)="touchedLastname = false">
-      <span class="text-red-500" *ngIf="touchedLastname">*LastName is required</span>
+        placeholder="LastName" [ngClass]="{'border-red-500': validation && !registerDto.lastName }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.lastName">*LastName is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.username" name="username" type="text"
-        placeholder="FirstName" (focus)="touchedUsername = true" (blur)="touchedUsername = false">
-      <span class="text-red-500" *ngIf="touchedUsername">*Username is required</span>
+        placeholder="Username" [ngClass]="{'border-red-500': validation && !registerDto.username }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.username">*Username is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.email" name="email" type="text"
-        placeholder="Email" (focus)="touchedEmail = true" (blur)="touchedEmail = false">
-      <span class="text-red-500" *ngIf="touchedEmail">*Email is required</span>
+        placeholder="Email" [ngClass]="{'border-red-500': validation && !registerDto.email }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.email">*Email is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.password" name="password"
-        type="password" placeholder="Password" (focus)="touchedPassowrd = true" (blur)="touchedPassowrd = false">
-      <span class="text-red-500" *ngIf="touchedPassowrd">*Password is required</span>
+        type="password" placeholder="Password" [ngClass]="{'border-red-500': validation && !registerDto.password }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.password">*Password is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" type="password" placeholder="Confirm Password"
-        (focus)="touchedConfirmPassword = true" (blur)="touchedConfirmPassword = false">
-      <span class="text-red-500" *ngIf="touchedConfirmPassword">*Confirm Password is required</span>
+      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.confirmPassword" name="confirmPassword"
+        type="password" placeholder="Confirm Password" [ngClass]="{'border-red-500': validation && !registerDto.confirmPassword }">
+      <span class="text-red-500" *ngIf="validation && !registerDto.confirmPassword">*Confirm Password is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.role" name="role" type="text"
-        placeholder="Role" (focus)="touchedRole = true" (blur)="touchedRole = false">
-      <span class="text-red-500" *ngIf="touchedRole">*Role is required</span>
+      <select id="role" name="role"
+        class="border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [(ngModel)]="registerDto.role" [ngClass]="{'border-red-500': validation && !registerDto.role }">
+        <option value="" disabled selected hidden>Choose a role</option>
+        <option value="ADMIN">ADMIN</option>
+        <option value="USER">USER</option>
+      </select>
+      <span class="text-red-500" *ngIf="validation && !registerDto.role">*Role is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.status" name="status" type="text"
-        placeholder="Status" (focus)="touchedStatus = true" (blur)="touchedStatus = false">
-      <span class="text-red-500" *ngIf="touchedStatus">*Status is required</span>
+      <select id="status" name="status"
+        class="border border-gray-300 text-black text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+        [(ngModel)]="registerDto.status" [ngClass]="{'border-red-500': validation && !registerDto.status }">
+        <option value="" disabled selected hidden>Choose the status</option>
+        <option value="ACTIVE">ACTIVE</option>
+        <option value="DEACTIVATED">DEACTIVATED</option>
+      </select>
+      <span class="text-red-500" *ngIf="validation && !registerDto.status">*Status is required</span>
     </div>
     <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="register(registerDto)">Submit</button>
   </form>
