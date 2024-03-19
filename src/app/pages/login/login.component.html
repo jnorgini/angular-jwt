@@ -3,13 +3,13 @@
   <form class="flex flex-col">
     <div class="flex flex-col mt-4 mb-1">
       <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.login" name="login" type="text"
-        placeholder="Username" (focus)="touchedLogin = true" (blur)="touchedLogin = false">
-      <span class="text-red-500" *ngIf="touchedLogin">*Username is required</span>
+        placeholder="Username" required [ngClass]="{'border-red-500': validation && !loginDto.login }">
+      <span class="text-red-500" *ngIf="validation && !loginDto.login">*Username is required</span>
     </div>
     <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.password" name="lastName" type="text"
-        placeholder="LastName" (focus)="touchedPassword = true" (blur)="touchedPassword = false">
-      <span class="text-red-500" *ngIf="touchedPassword">*Password is required</span>
+      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.password" name="password" type="text"
+        placeholder="Password" required [ngClass]="{'border-red-500': validation && !loginDto.login }">
+      <span class="text-red-500" *ngIf="validation && !loginDto.password">*Password is required</span>
     </div>
     <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login(loginDto)">Submit</button>
   </form>

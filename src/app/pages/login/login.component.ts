@@ -17,8 +17,7 @@ export class LoginComponent {
   jwtDto = new JwtAuth();
   currentUser: User | undefined;
   currentUserVisible: boolean = false;
-  touchedLogin = false;
-  touchedPassword = false;
+  validation = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -29,6 +28,12 @@ export class LoginComponent {
   }
 
   login(loginDto: Login) {
+    this.validation = true;
+    if (!loginDto.login || !loginDto.password) {
+      alert('Por favor, preencha todos os campos.');
+      return;
+    }
+
     this.authService.login(loginDto).subscribe((jwtDto) => {
       localStorage.setItem('jwtToken', jwtDto.token);
       console.log('Token: ', jwtDto.token, '\nRefreshToken: ', jwtDto.refreshToken, '\nUsername: ', jwtDto.username);
