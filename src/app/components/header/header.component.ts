@@ -11,7 +11,13 @@ export class HeaderComponent {
   constructor(private router: Router) { }
 
   logout() {
-    this.router.navigate(['/login']);
+    try {
+      localStorage.removeItem('jwtToken');
+      this.router.navigate(['/login']);
+      console.log('Token removed successfully.');
+    } catch (error) {
+      console.error('Error removing token:', error);
+    }
   }
 
 }
