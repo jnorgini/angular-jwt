@@ -24,6 +24,8 @@ export class RegisterComponent {
     }
     this.authService.register(registerDto).subscribe((userData: any) => {
       console.log(userData);
+      this.registerDto = new Register();
+      this.validation = false;
     });
   }
 

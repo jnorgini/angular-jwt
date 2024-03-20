@@ -21,12 +21,6 @@ export class LoginComponent {
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
-  register(registerDto: Register) {
-    this.authService.register(registerDto).subscribe((userData: any) => {
-      console.log(userData);
-    });
-  }
-
   login(loginDto: Login) {
     this.validation = true;
     if (!loginDto.login || !loginDto.password) {
