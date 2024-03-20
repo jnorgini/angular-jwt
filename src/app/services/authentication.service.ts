@@ -25,7 +25,7 @@ export class AuthenticationService {
   constructor(private http: HttpClient) {
     this.currentUserSubject = new BehaviorSubject<User | null>(null);
     this.currentUser = this.currentUserSubject.asObservable();
-   }
+  }
 
   register(user: Register): Observable<JwtAuth> {
     return this.http.post<JwtAuth>(`${environment.API_URL}/${this.registerUrl}`, user, HTTP_OPTIONS);
@@ -41,6 +41,10 @@ export class AuthenticationService {
       HTTP_OPTIONS.headers = HTTP_OPTIONS.headers.set('Authorization', `Bearer ${token}`);
     }
     return this.http.get<User>(`${environment.API_URL}/${this.meUrl}`, HTTP_OPTIONS);
+  }
+
+  logout() {
+    localStorage.removeItem('jwtToken');
   }
 
 }

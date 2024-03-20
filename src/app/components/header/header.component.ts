@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-header',
@@ -8,16 +9,12 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
 
-  constructor(private router: Router) { }
+  constructor(private authService: AuthenticationService, private router: Router) { }
 
   logout() {
-    try {
-      localStorage.removeItem('jwtToken');
-      this.router.navigate(['/login']);
-      console.log('Token removed successfully.');
-    } catch (error) {
-      console.error('Error removing token:', error);
-    }
+    this.authService.logout();
+    this.router.navigate(['/login']);
+    console.log('Disconnected. Token has been removed.')
   }
 
 }
