@@ -1,8 +1,7 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Register } from '../../models/Register';
 import { JwtAuth } from '../../models/JwtAuth';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -14,7 +13,7 @@ export class RegisterComponent {
   jwtDto = new JwtAuth();
   validation = false;
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private authService: AuthenticationService) { }
 
   register(registerDto: Register) {
     this.validation = true;

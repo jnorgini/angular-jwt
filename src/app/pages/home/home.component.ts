@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,7 +11,7 @@ export class HomeComponent implements OnInit {
   currentUser: User | null = null;
   currentUserVisible: boolean = false;
 
-  constructor(private authService: AuthenticationService, private router: Router) { }
+  constructor(private authService: AuthenticationService) { }
 
   ngOnInit(): void {
     this.userDetails();
