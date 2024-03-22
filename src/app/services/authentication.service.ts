@@ -2,10 +2,11 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Login } from '../models/Login';
 import { Register } from '../models/Register';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { JwtAuth } from '../models/JwtAuth';
 import { User } from '../models/User';
+import { jwtDecode } from 'jwt-decode';
 
 const HTTP_OPTIONS = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -15,24 +16,27 @@ const HTTP_OPTIONS = {
   providedIn: 'root'
 })
 export class AuthenticationService {
-  registerUrl = "users";
-  loginUrl = "login";
-  meUrl = "users/me";
+  API_URL = environment.API_URL;
+  REGISTER_URL = `${this.API_URL}/users`;
+  LOGIN_URL = `${this.API_URL}/login`;
+  USER_URL = `${this.API_URL}/users/me`;
 
-  private currentUserSubject: BehaviorSubject<User | null>;
-  public currentUser: Observable<User | null>;
-
-  constructor(private http: HttpClient) {
-    this.currentUserSubject = new BehaviorSubject<User | null>(null);
-    this.currentUser = this.currentUserSubject.asObservable();
-  }
+  constructor(private http: HttpClient) { }
 
   register(user: Register): Observable<JwtAuth> {
-    return this.http.post<JwtAuth>(`${environment.API_URL}/${this.registerUrl}`, user, HTTP_OPTIONS);
+    return this.http.post<JwtAuth>(`${this.REGISTER_URL}`, user, HTTP_OPTIONS);
   }
 
   login(user: Login): Observable<JwtAuth> {
-    return this.http.post<JwtAuth>(`${environment.API_URL}/${this.loginUrl}`, user, HTTP_OPTIONS);
+    return this.http.post<JwtAuth>(`${this.LOGIN_URL}`, user, HTTP_OPTIONS);
+  }
+
+  logout() {
+    localStorage.removeItem('jwtToken');
+  }
+
+  decodeToken(token: string): any {
+    return jwtDecode(token);
   }
 
   getCurrentUser(): Observable<User> {
@@ -40,11 +44,7 @@ export class AuthenticationService {
     if (token) {
       HTTP_OPTIONS.headers = HTTP_OPTIONS.headers.set('Authorization', `Bearer ${token}`);
     }
-    return this.http.get<User>(`${environment.API_URL}/${this.meUrl}`, HTTP_OPTIONS);
-  }
-
-  logout() {
-    localStorage.removeItem('jwtToken');
+    return this.http.get<User>(`${this.USER_URL}`, HTTP_OPTIONS);
   }
 
 }
