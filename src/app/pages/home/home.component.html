@@ -12,3 +12,39 @@
 </div>
 
 <hr />
+
+<div class="w-full min-h-screen bg-gray-900 flex justify-center px-4">
+  <main class="my-10 w-full md:max-w-2xl">
+    <h1 class="text-4xl font-medium text-white">Clientes</h1>
+
+    <form class="flex flex-col my-6">
+      <label class="font-medium text-white">Name:</label>
+      <input [(ngModel)]="client.name" type="text" placeholder="Digite seu nome completo..."
+        class="w-full mb-5 p-2 rounded" name="name" />
+
+      <label class="font-medium text-white">E-mail:</label>
+      <input [(ngModel)]="client.email" type="email" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
+        name="email" />
+
+      <label class="font-medium text-white">Status:</label>
+      <input [(ngModel)]="client.status" type="text" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
+        name="status" />
+
+      <input (click)="createClient()" type="submit" value="Cadastrar"
+        class="cursor-pointer w-full p-2 bg-green-500 rounded font-medium text-white" />
+    </form>
+
+    <section class="flex flex-col gap-4">
+      <article *ngFor="let client of clients" class="w-full bg-white rounded p-2 relative hover:scale-105 duration-200">
+        <p><span class="font-medium">Nome: </span> {{ client.name }} </p>
+        <p><span class="font-medium">E-mail: </span> {{ client.email }} </p>
+        <p><span class="font-medium">Status: </span> {{ client.status }} </p>
+
+        <button (click)="removeClient(client.id)"
+          class="bg-red-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-0 -top-2">
+          <i class="fa fa-trash fa-18 text-white" aria-hidden="true"></i>
+        </button>
+      </article>
+    </section>
+  </main>
+</div>
