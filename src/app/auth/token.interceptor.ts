@@ -1,6 +1,6 @@
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpErrorResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../services/authentication.service';
@@ -22,26 +22,25 @@ export class TokenInterceptor implements HttpInterceptor {
         this.router.navigateByUrl('/login').then(() => {
           window.location.reload();
         });
-        return next.handle(req);
+        return throwError(() => new Error("Token expired"));
       }
+
+      req = req.clone({
+        setHeaders: {
+          Authorization: `Bearer ${token}`
+        }
+      });
     }
 
-    req.clone({
-      setHeaders: {
-        Authorization: `Bearer ${token}`
-      }
-    });
-
     return next.handle(req).pipe(
-      catchError(error => {
+      catchError((error: HttpErrorResponse) => {
         if (error.status === 401 || error.status === 403) {
           this.router.navigateByUrl('/login').then(() => {
             console.log('Unauthorized access');
           });
         }
-        throw error;
+        return throwError(() => error);
       })
     );
   }
-
 }
