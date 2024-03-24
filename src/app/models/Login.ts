@@ -1,4 +1,4 @@
 export class Login {
-  login = '';
+  username = '';
   password = '';
 }

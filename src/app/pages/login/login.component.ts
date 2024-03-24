@@ -23,7 +23,7 @@ export class LoginComponent {
 
   login(loginDto: Login) {
     this.validation = true;
-    if (!loginDto.login || !loginDto.password) {
+    if (!loginDto.username || !loginDto.password) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
