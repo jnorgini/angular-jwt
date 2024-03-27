@@ -1,19 +1,21 @@
-<div class="lg:w-4/12 p-10 shadow-lg mx-auto m-20">
-  <h3 class="text-3xl text-center font-semibold py-5">Login</h3>
-  <form class="flex flex-col">
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.username" name="login" type="text"
-        placeholder="Username" required [ngClass]="{'border-red-500': validation && !loginDto.username }">
-      <span class="text-red-500" *ngIf="validation && !loginDto.username">*Username is required</span>
+<div class="mx-auto m-20 login-page">
+  <div class="lg:w-4/12 p-10 shadow-lg mx-auto bg-gray-100 rounded-md">
+    <h3 class="text-3xl text-center font-semibold py-5">Login</h3>
+    <form class="flex flex-col">
+      <div class="flex flex-col mt-4 mb-1">
+        <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.username" name="login" type="text"
+          placeholder="Username" required [ngClass]="{'border-red-500': validation && !loginDto.username }">
+        <span class="text-red-500" *ngIf="validation && !loginDto.username">*Username is required</span>
+      </div>
+      <div class="flex flex-col mt-4 mb-1">
+        <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.password" name="password" type="password"
+          placeholder="Password" required [ngClass]="{'border-red-500': validation && !loginDto.password }">
+        <span class="text-red-500" *ngIf="validation && !loginDto.password">*Password is required</span>
+      </div>
+      <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login(loginDto)">Submit</button>
+    </form>
+    <div class="flex justify-center mt-5">
+      <span>You Don't Have an Account?</span> <a class="text-indigo-600 ml-2 cursor-pointer" routerLink="/register">Register Here</a>
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="loginDto.password" name="password" type="password"
-        placeholder="Password" required [ngClass]="{'border-red-500': validation && !loginDto.password }">
-      <span class="text-red-500" *ngIf="validation && !loginDto.password">*Password is required</span>
-    </div>
-    <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="login(loginDto)">Submit</button>
-  </form>
-  <div class="flex justify-center mt-5">
-    <span>You Don't Have an Account?</span> <a class="text-indigo-600 ml-2 cursor-pointer" routerLink="/register">Register Here</a>
   </div>
 </div>
