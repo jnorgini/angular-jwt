@@ -5,6 +5,6 @@ export class Register {
   lastName = '';
   password = '';
   confirmPassword = '';
-  status = '';
-  role = '';
+  status = 0;
+  role = 0;
 }

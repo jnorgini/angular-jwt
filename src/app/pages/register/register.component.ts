@@ -17,7 +17,7 @@ export class RegisterComponent {
 
   register(registerDto: Register) {
     this.validation = true;
-    if (!registerDto.firstName || !registerDto.lastName || !registerDto.username || !registerDto.email || !registerDto.password || !registerDto.confirmPassword || !registerDto.role || !registerDto.status) {
+    if (!registerDto.firstName || !registerDto.lastName || !registerDto.username || !registerDto.email || !registerDto.password || !registerDto.confirmPassword) {
       alert('Por favor, preencha todos os campos.');
       return;
     }
