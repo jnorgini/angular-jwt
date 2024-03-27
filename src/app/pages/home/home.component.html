@@ -1,4 +1,4 @@
-<hr />
+<!-- <hr />
 
 <button class="bg-indigo-500 ml-2 p-2 rounded mt-3 text-white" (click)="toggleUserDetails()">Current User
   Details</button>
@@ -11,24 +11,24 @@
   <p><span class="font-semibold">Role:</span> {{ currentUser?.role }}</p>
 </div>
 
-<hr />
+<hr /> -->
 
-<div class="w-full min-h-screen bg-gray-900 flex justify-center px-4">
+<div class="w-full min-h-screen flex justify-center px-4">
   <main class="my-10 w-full md:max-w-2xl">
     <h1 class="text-4xl font-medium text-white">Clientes</h1>
 
     <form class="flex flex-col my-6">
       <label class="font-medium text-white">Name:</label>
       <input [(ngModel)]="client.name" type="text" placeholder="Digite seu nome completo..."
-        class="w-full mb-5 p-2 rounded" name="name" />
+      class="w-full mb-5 p-2 rounded" name="name" [ngClass]="{ 'border-red-500': validation && !client.name }" />
 
       <label class="font-medium text-white">E-mail:</label>
       <input [(ngModel)]="client.email" type="email" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
-        name="email" />
+      name="email" [ngClass]="{ 'border-red-500': validation && !client.email }" />
 
       <label class="font-medium text-white">Status:</label>
       <input [(ngModel)]="client.status" type="text" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
-        name="status" />
+      name="status" [ngClass]="{ 'border-red-500': validation && !client.status }" />
 
       <input (click)="createClient()" type="submit" value="Cadastrar"
         class="cursor-pointer w-full p-2 bg-green-500 rounded font-medium text-white" />

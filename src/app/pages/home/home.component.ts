@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   currentUserVisible: boolean = false;
   client = new Client();
   clients: Client[] = [];
+  validation = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -33,7 +34,21 @@ export class HomeComponent implements OnInit {
     });
   }
 
+  isEmailValid(email: string): boolean {
+    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailPattern.test(email);
+  }
+
   createClient(): void {
+    this.validation = true;
+    if (!this.client.name || !this.client.email || !this.client.status) {
+      alert('Por favor, preencha todos os campos');
+      return;
+    }
+    if (!this.isEmailValid(this.client.email)) {
+      alert('Por favor, insira um email válido');
+      return;
+    }
     this.clientService.addClient(this.client)
       .pipe(
         catchError((error) => {
@@ -44,6 +59,7 @@ export class HomeComponent implements OnInit {
         console.log('Client successfully registered!');
         this.clients.push(newClient);
         this.client = new Client();
+        this.validation = false;
       });
   }
 
