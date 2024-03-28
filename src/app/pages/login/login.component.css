@@ -1,0 +1,22 @@
+.login-page input::placeholder {
+  color: white;
+}
+
+.login-page button:hover {
+  background-color: white;
+  color: black;
+}
+
+.login-page button:active {
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}
+
+.login-page a:hover {
+  color: white;
+}
+
+.login-page input:focus {
+  outline: 1px solid white;
+}
+
