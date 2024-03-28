@@ -9,10 +9,11 @@
   cursor: not-allowed;
 }
 
-body {
-  /* background-image: url('../src/assets/bg-img.jpg'); */
-  background-color: #1a202c;
+html, body {
+  background-image: url('../src/assets/bg-img.jpg');
+  /* background-color: #1a202c; */
   background-size: cover;
   background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
 }
-
