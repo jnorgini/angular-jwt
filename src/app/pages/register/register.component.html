@@ -1,36 +1,56 @@
-<div class="lg:w-4/12 p-10 shadow-lg mx-auto m-20 bg-gray-100 rounded-md">
+<div class="lg:w-4/12 p-10 register-page shadow-lg mx-auto m-20 bg-gray-100 rounded-md"
+  style="background-color: rgba(255, 255, 255, 0.1); backdrop-filter: blur(20px); border: 2px solid rgba(255, 255, 255, .2); color: #fff; border-radius: 10px; padding: 30px 40px;">
   <h3 class="text-3xl text-center font-semibold py-5">Register</h3>
   <form class="flex flex-col">
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.firstName" name="firstName" type="text"
-        placeholder="FirstName" [ngClass]="{'border-red-500': validation && !registerDto.firstName }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.firstName">*FirstName is required</span>
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+      <input class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.firstName" name="firstName" type="text" placeholder="First Name"
+        [ngClass]="{'border-red-500': validation && !registerDto.firstName }">
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.firstName">*First Name is required</span> -->
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.lastName" name="lastName" type="text"
-        placeholder="LastName" [ngClass]="{'border-red-500': validation && !registerDto.lastName }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.lastName">*LastName is required</span>
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+      <input class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.lastName" name="lastName" type="text" placeholder="Last Name"
+        [ngClass]="{'border-red-500': validation && !registerDto.lastName }">
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.lastName">*Last Name is required</span> -->
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.username" name="username" type="text"
-        placeholder="Username" [ngClass]="{'border-red-500': validation && !registerDto.username }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.username">*Username is required</span>
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+      <input class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.username" name="username" type="text" placeholder="Username"
+        [ngClass]="{'border-red-500': validation && !registerDto.username }">
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.username">*Username is required</span> -->
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.email" name="email" type="text"
-        placeholder="Email" [ngClass]="{'border-red-500': validation && !registerDto.email }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.email">*Email is required</span>
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
+      <input class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.email" name="email" type="text" placeholder="Email"
+        [ngClass]="{'border-red-500': validation && !registerDto.email }">
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.email">*Email is required</span> -->
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.password" name="password"
-        type="password" placeholder="Password" [ngClass]="{'border-red-500': validation && !registerDto.password }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.password">*Password is required</span>
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
+      <input #passwordInput class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.password" name="password" type="password" placeholder="Password"
+        [ngClass]="{'border-red-500': validation && !registerDto.password }">
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.password">*Password is required</span> -->
+      <i *ngIf="passwordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
+        (click)="togglePasswordVisibility(passwordInput)"></i>
+      <i *ngIf="!passwordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
+        (click)="togglePasswordVisibility(passwordInput)"></i>
     </div>
-    <div class="flex flex-col mt-4 mb-1">
-      <input class="p-2 border border-gray-300 rounded" [(ngModel)]="registerDto.confirmPassword" name="confirmPassword"
-        type="password" placeholder="Confirm Password"
+    <div class="flex flex-col mt-4 mb-1 relative">
+      <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
+      <input #confirmPasswordInput class="p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        [(ngModel)]="registerDto.confirmPassword" name="confirmPassword" type="password" placeholder="Confirm Password"
         [ngClass]="{'border-red-500': validation && !registerDto.confirmPassword }">
-      <span class="text-red-500" *ngIf="validation && !registerDto.confirmPassword">*Confirm Password is required</span>
+      <!-- <span class="text-red-500" *ngIf="validation && !registerDto.confirmPassword">*Confirm Password is required</span> -->
+      <i *ngIf="confirmPasswordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
+        (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
+      <i *ngIf="!confirmPasswordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
+        (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
     </div>
     <div class="flex flex-col mt-4 mb-1" style="display: none;">
       <select id="role" name="role" [(ngModel)]="registerDto.role">
@@ -42,9 +62,9 @@
         <option value="0" selected hidden></option>
       </select>
     </div>
-    <button class="bg-indigo-500 p-2 rounded mt-3 text-white" (click)="register(registerDto)">Submit</button>
+    <button class="bg-indigo-900 p-2 rounded mt-3 text-white" (click)="register(registerDto)">Submit</button>
   </form>
   <div class="flex justify-center mt-5">
-    <span>Already Have Account?</span> <a class="text-indigo-600 ml-2 cursor-pointer" routerLink="/login">Login Here</a>
+    <span>Already Have Account?</span> <a class="text-blue-400 ml-2 cursor-pointer" routerLink="/login">Login Here</a>
   </div>
 </div>

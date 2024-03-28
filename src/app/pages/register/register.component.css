@@ -1,0 +1,22 @@
+.register-page input::placeholder {
+  color: white;
+}
+
+.register-page button:hover {
+  background-color: white;
+  color: black;
+}
+
+.register-page button:active {
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}
+
+.register-page a:hover {
+  color: white;
+}
+
+.register-page input:focus {
+  outline: 1px solid white;
+}
+
