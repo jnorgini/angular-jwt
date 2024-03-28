@@ -18,13 +18,14 @@ export class LoginComponent {
   currentUser: User | undefined;
   currentUserVisible: boolean = false;
   validation = false;
+  passwordVisible = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   login(loginDto: Login) {
     this.validation = true;
     if (!loginDto.username || !loginDto.password) {
-      alert('Por favor, preencha todos os campos.');
+      console.log('Por favor, preencha todos os campos.');
       return;
     }
     this.authService.login(loginDto).subscribe((jwtDto) => {
@@ -42,6 +43,11 @@ export class LoginComponent {
       .subscribe(user => {
         this.currentUser = user;
       });
+  }
+
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    this.passwordVisible = !this.passwordVisible;
+    passwordInput.type = this.passwordVisible ? 'text' : 'password';
   }
 
 }

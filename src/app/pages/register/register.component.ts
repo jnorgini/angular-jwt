@@ -12,13 +12,15 @@ export class RegisterComponent {
   registerDto = new Register();
   jwtDto = new JwtAuth();
   validation = false;
+  passwordVisible = false;
+  confirmPasswordVisible = false;
 
   constructor(private authService: AuthenticationService) { }
 
   register(registerDto: Register) {
     this.validation = true;
     if (!registerDto.firstName || !registerDto.lastName || !registerDto.username || !registerDto.email || !registerDto.password || !registerDto.confirmPassword) {
-      alert('Por favor, preencha todos os campos.');
+      console.log('Por favor, preencha todos os campos.');
       return;
     }
     this.authService.register(registerDto).subscribe((userData: any) => {
@@ -26,6 +28,16 @@ export class RegisterComponent {
       this.registerDto = new Register();
       this.validation = false;
     });
+  }
+
+  togglePasswordVisibility(passwordInput: HTMLInputElement): void {
+    this.passwordVisible = !this.passwordVisible;
+    passwordInput.type = this.passwordVisible ? 'text' : 'password';
+  }
+
+  toggleConfirmPasswordVisibility(confirmPasswordInput: HTMLInputElement): void {
+    this.confirmPasswordVisible = !this.confirmPasswordVisible;
+    confirmPasswordInput.type = this.confirmPasswordVisible ? 'text' : 'password';
   }
 
 }
