@@ -1,3 +1,21 @@
+.register-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../../../assets/bg-img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+}
+
+.register-page {
+  width: 35%;
+  border-color: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+}
+
 .register-page input::placeholder {
   color: white;
 }
@@ -13,10 +31,9 @@
 }
 
 .register-page a:hover {
-  color: white;
+  color: rgb(68, 238, 68);
 }
 
 .register-page input:focus {
   outline: 1px solid white;
 }
-
