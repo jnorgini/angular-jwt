@@ -9,11 +9,5 @@
   cursor: not-allowed;
 }
 
-html, body {
-  background-image: url('../src/assets/bg-img.jpg');
-  /* background-color: #1a202c; */
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin: 0;
-  padding: 0;
-}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
