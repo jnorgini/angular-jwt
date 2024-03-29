@@ -17,10 +17,35 @@ export class RegisterComponent {
 
   constructor(private authService: AuthenticationService) { }
 
+  validateFields(): boolean {
+    const { firstName, lastName, username, email, password, confirmPassword } = this.registerDto;
+
+    if (!firstName || !lastName || !username || !email || !password || !confirmPassword) {
+      console.log('Por favor, preencha todos os campos.');
+      return false;
+    }
+
+    if (password.length < 8 || password.length > 16 || /\s/.test(password)) {
+      console.log('A senha deve ter entre 8 e 16 caracteres e não pode haver espaços.');
+      return false;
+    }
+
+    if (password !== confirmPassword) {
+      console.log('As senhas não coincidem. Por favor, confirme a senha corretamente.');
+      return false;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      console.log('Por favor, insira um endereço de email válido.');
+      return false;
+    }
+    return true;
+  }
+
   register(registerDto: Register) {
     this.validation = true;
-    if (!registerDto.firstName || !registerDto.lastName || !registerDto.username || !registerDto.email || !registerDto.password || !registerDto.confirmPassword) {
-      console.log('Por favor, preencha todos os campos.');
+    if (!this.validateFields()) {
       return;
     }
     this.authService.register(registerDto).subscribe((userData: any) => {
