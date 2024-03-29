@@ -22,10 +22,18 @@ export class LoginComponent {
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
+  validateFields(): boolean {
+    const { username, password } = this.loginDto;
+    if (!username || !password) {
+      console.log('Por favor, preencha todos os campos.');
+      return false;
+    }
+    return true;
+  }
+
   login(loginDto: Login) {
     this.validation = true;
-    if (!loginDto.username || !loginDto.password) {
-      console.log('Por favor, preencha todos os campos.');
+    if (!this.validateFields()) {
       return;
     }
     this.authService.login(loginDto).subscribe((jwtDto) => {
