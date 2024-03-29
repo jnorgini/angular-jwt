@@ -1,3 +1,21 @@
+.login-page-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../../../assets/bg-img.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: bottom;
+  width: 100%;
+}
+
+.login-page {
+  width: 35%;
+  border-color: rgba(255, 255, 255, .2);
+  border-radius: 10px;
+}
+
 .login-page input::placeholder {
   color: white;
 }
@@ -13,10 +31,9 @@
 }
 
 .login-page a:hover {
-  color: white;
+  color: rgb(68, 238, 68);
 }
 
 .login-page input:focus {
   outline: 1px solid white;
 }
-
