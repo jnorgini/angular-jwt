@@ -12,7 +12,7 @@
         <input class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white"
           [(ngModel)]="loginDto.username" name="login" type="text" required
           [ngClass]="{
-            'border-green': hasText(loginDto.username) && validation,
+            'border-green': hasText(loginDto.username),
             'border-red-500': validation && !loginDto.username
           }"
           (focus)="usernameFocused = true"
@@ -32,7 +32,7 @@
         <input #passwordInput class="border-l-4 p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
           [(ngModel)]="loginDto.password" name="password" type="{{ passwordVisible ? 'text' : 'password' }}" required
           [ngClass]="{
-            'border-green': hasText(loginDto.password) && validation,
+            'border-green': hasText(loginDto.password),
             'border-red-500': validation && !loginDto.password
           }"
           (focus)="passwordFocused = true"
