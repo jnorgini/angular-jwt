@@ -19,6 +19,8 @@ export class LoginComponent {
   currentUserVisible: boolean = false;
   validation = false;
   passwordVisible = false;
+  usernameFocused = false;
+  passwordFocused = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -56,6 +58,10 @@ export class LoginComponent {
   togglePasswordVisibility(passwordInput: HTMLInputElement): void {
     this.passwordVisible = !this.passwordVisible;
     passwordInput.type = this.passwordVisible ? 'text' : 'password';
+  }
+
+  hasText(inputValue: string): boolean {
+    return !!inputValue;
   }
 
 }
