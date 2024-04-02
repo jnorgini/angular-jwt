@@ -3,40 +3,43 @@
     <h3 class="text-3xl text-center font-semibold py-5">Login</h3>
     <form class="flex flex-col mt-2">
       <div class="flex flex-col mt-4 mb-1 relative">
-        <label class="teste absolute top-3 left-9 transition-all duration-300 text-white"
+        <label for="username" class="absolute top-3 left-9 transition-all duration-300 text-white"
           [class.label-active]="usernameFocused || loginDto.username">
           {{ validation && !loginDto.username ? '' : 'Username' }}
           <span *ngIf="validation && !loginDto.username" class="text-red-500">*Username</span>
         </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
-        <input class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white"
-          [(ngModel)]="loginDto.username" name="login" type="text" required
+        <input id="username" class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white"
+          [(ngModel)]="loginDto.username" name="username" type="text" required
           [ngClass]="{
             'border-green': hasText(loginDto.username),
             'border-red-500': validation && !loginDto.username
           }"
           (focus)="usernameFocused = true"
-          (blur)="usernameFocused = false">
+          (blur)="usernameFocused = false"
+          autocomplete="username">
         <div *ngIf="validation && !loginDto.username"
           class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
           <p>*Username is required.</p>
         </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
-        <label class="absolute top-3 left-9 transition-all duration-300 text-white"
+        <label for="password" class="absolute top-3 left-9 transition-all duration-300 text-white"
           [class.label-active]="passwordFocused ||loginDto.password">
           {{ validation && !loginDto.password ? '' : 'Password' }}
           <span *ngIf="validation && !loginDto.password" class="text-red-500">*Password</span>
         </label>
         <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
-        <input #passwordInput class="border-l-4 p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+        <input id="password" #passwordInput
+          class="border-l-4 p-2 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
           [(ngModel)]="loginDto.password" name="password" type="{{ passwordVisible ? 'text' : 'password' }}" required
           [ngClass]="{
             'border-green': hasText(loginDto.password),
             'border-red-500': validation && !loginDto.password
           }"
           (focus)="passwordFocused = true"
-          (blur)="passwordFocused = false">
+          (blur)="passwordFocused = false"
+          autocomplete="current-password">
         <div *ngIf="validation && !loginDto.password"
           class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
           <p>*Password is required.</p>
@@ -46,7 +49,8 @@
         <i *ngIf="!passwordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
           (click)="togglePasswordVisibility(passwordInput)"></i>
       </div>
-      <button class="bg-indigo-900 p-2 h-12 rounded mt-3 text-white" (click)="login(loginDto)">Submit</button>
+      <button class="bg-indigo-900 p-2 h-12 rounded mt-3 text-white"
+      (click)="login(loginDto)">Submit</button>
     </form>
     <div class="flex justify-center mt-5">
       <span>You don't have an account?</span> <a class="text-white ml-2 cursor-pointer hover:underline"
