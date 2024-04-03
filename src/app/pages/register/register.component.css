@@ -34,6 +34,20 @@
   color: rgb(68, 238, 68);
 }
 
-.register-page input:focus {
-  outline: 1px solid white;
+.register-page label {
+  transform: translateY(0);
+}
+
+.register-page .label-active {
+  color: rgb(68, 238, 68);
+  transform: translateY(-22px);
+  font-size: 0.8rem;
+  background-color: rgb(17 24 39);
+  padding: 0 5px;
+}
+
+.border-green {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 1px rgb(68, 238, 68);
 }
