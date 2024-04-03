@@ -1,53 +1,135 @@
 <div class="register-page-wrapper">
   <div class="register-page
-  p-10 shadow-lg bg-gray-100 bg-opacity-10 backdrop-blur-md border-2 border-white rounded-md text-white">
+  p-10 shadow-lg bg-gray-900 border-2 border-white rounded-md text-white">
     <h3 class="text-3xl text-center font-semibold py-5">Register</h3>
     <form class="flex flex-col">
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="firstName" class="teste absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="firstNameFocused || registerDto.firstName">
+          {{ validation && !registerDto.firstName ? '' : 'First Name' }}
+          <span *ngIf="validation && !registerDto.firstName" class="text-red-500">*First Name</span>
+        </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
-        <input class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.firstName" name="firstName" type="text" placeholder="First Name"
-          [ngClass]="{'border-red-500': validation && !registerDto.firstName }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.firstName">*First Name is required</span> -->
+        <input id="firstName" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.firstName" name="firstName" type="text" required
+          [ngClass]="{
+          'border-green': hasText(registerDto.firstName),
+          'border-red-500': validation && !registerDto.firstName
+        }"
+        (focus)="firstNameFocused = true"
+        (blur)="firstNameFocused = false">
+        <div *ngIf="validation && !registerDto.firstName"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*First Name is required.</p>
+        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="lastName" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="lastNameFocused || registerDto.lastName">
+          {{ validation && !registerDto.lastName ? '' : 'Last Name' }}
+          <span *ngIf="validation && !registerDto.lastName" class="text-red-500">*Last Name</span>
+        </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
-        <input class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.lastName" name="lastName" type="text" placeholder="Last Name"
-          [ngClass]="{'border-red-500': validation && !registerDto.lastName }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.lastName">*Last Name is required</span> -->
+        <input id="lastName" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.lastName" name="lastName" type="text" placeholder=""
+          [ngClass]="{
+          'border-green': hasText(registerDto.lastName),
+          'border-red-500': validation && !registerDto.lastName
+         }"
+         (focus)="lastNameFocused = true"
+         (blur)="lastNameFocused = false">
+        <div *ngIf="validation && !registerDto.lastName"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Last Name is required.</p>
+        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="username" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="usernameFocused || registerDto.username">
+          {{ validation && !registerDto.username ? '' : 'Username' }}
+          <span *ngIf="validation && !registerDto.username" class="text-red-500">*Username</span>
+        </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
-        <input class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.username" name="username" type="text" placeholder="Username"
-          [ngClass]="{'border-red-500': validation && !registerDto.username }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.username">*Username is required</span> -->
+        <input id="username" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.username" name="username" type="text" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(registerDto.username),
+            'border-red-500': validation && !registerDto.username }"
+            (focus)="usernameFocused = true"
+            (blur)="usernameFocused = false"
+            autocomplete="username">
+        <div *ngIf="validation && !registerDto.username"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Username is required</p>
+        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="email" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="emailFocused || registerDto.email">
+          {{ validation && !registerDto.email ? '' : 'E-mail' }}
+          <span *ngIf="validation && !registerDto.email" class="text-red-500">E-mail</span>
+        </label>
         <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
-        <input class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.email" name="email" type="text" placeholder="Email"
-          [ngClass]="{'border-red-500': validation && !registerDto.email }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.email">*Email is required</span> -->
+        <input id="email" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.email" name="email" type="text" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(registerDto.email),
+            'border-red-500': validation && !registerDto.email }"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+            autocomplete="email">
+        <div *ngIf="validation && !registerDto.email"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*E-mail is required.</p>
+        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="password" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="passwordFocused || registerDto.password">
+          {{ validation && !registerDto.password ? '' : 'Password' }}
+          <span *ngIf="validation && !registerDto.password" class="text-red-500">*Password</span>
+        </label>
         <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
-        <input #passwordInput class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.password" name="password" type="password" placeholder="Password"
-          [ngClass]="{'border-red-500': validation && !registerDto.password }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.password">*Password is required</span> -->
+        <input id="password" #passwordInput
+          class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.password" name="password" type="password" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(registerDto.password),
+            'border-red-500': validation && !registerDto.password
+            }"
+            (focus)="passwordFocused = true"
+            (blur)="passwordFocused = false"
+            autocomplete="current-password">
+        <div *ngIf="validation && !registerDto.password"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Password is required.</p>
+        </div>
         <i *ngIf="passwordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
           (click)="togglePasswordVisibility(passwordInput)"></i>
         <i *ngIf="!passwordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
           (click)="togglePasswordVisibility(passwordInput)"></i>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="confirmPassword" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="confirmPasswordFocused || registerDto.confirmPassword">
+          {{ validation && !registerDto.confirmPassword ? '' : 'Confirm Password' }}
+          <span *ngIf="validation && !registerDto.confirmPassword" class="text-red-500">*Confirm Password</span>
+        </label>
         <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
-        <input #confirmPasswordInput class="pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
-          [(ngModel)]="registerDto.confirmPassword" name="confirmPassword" type="password"
-          placeholder="Confirm Password" [ngClass]="{'border-red-500': validation && !registerDto.confirmPassword }">
-        <!-- <span class="text-red-500" *ngIf="validation && !registerDto.confirmPassword">*Confirm Password is required</span> -->
+        <input id="confirmPassword" #confirmPasswordInput
+          class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="registerDto.confirmPassword" name="password" type="password" placeholder=""
+          [ngClass]="{
+          'border-green': hasText(registerDto.confirmPassword),
+          'border-red-500': validation && !registerDto.confirmPassword
+          }"
+          (focus)="confirmPasswordFocused = true"
+          (blur)="confirmPasswordFocused = false"
+          autocomplete="confirmPassowrd">
+        <div *ngIf="validation && !registerDto.password"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Passowrd is required.</p>
+        </div>
         <i *ngIf="confirmPasswordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
           (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
         <i *ngIf="!confirmPasswordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
