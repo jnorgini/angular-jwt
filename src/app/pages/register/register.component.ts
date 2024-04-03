@@ -14,6 +14,12 @@ export class RegisterComponent {
   validation = false;
   passwordVisible = false;
   confirmPasswordVisible = false;
+  firstNameFocused = false;
+  lastNameFocused = false;
+  usernameFocused = false;
+  emailFocused = false;
+  passwordFocused = false;
+  confirmPasswordFocused = false;
 
   constructor(private authService: AuthenticationService) { }
 
@@ -63,6 +69,10 @@ export class RegisterComponent {
   toggleConfirmPasswordVisibility(confirmPasswordInput: HTMLInputElement): void {
     this.confirmPasswordVisible = !this.confirmPasswordVisible;
     confirmPasswordInput.type = this.confirmPasswordVisible ? 'text' : 'password';
+  }
+
+  hasText(inputValue: string): boolean {
+    return !!inputValue;
   }
 
 }
