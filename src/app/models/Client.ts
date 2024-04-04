@@ -2,5 +2,6 @@ export class Client {
   id = 0;
   name = '';
   email = '';
-  status = '';
+  cpf: number | undefined;
+  phone: number | undefined;
 }

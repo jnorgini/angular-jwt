@@ -15,31 +15,36 @@
 <app-header />
 
 <div class="w-full min-h-screen flex justify-center px-4 bg-gray-900">
-  <main class="my-10 w-full md:max-w-2xl">
+  <main class="my-10 w-full md:max-w-xl">
     <h1 class="text-4xl font-medium text-white">Clientes</h1>
 
     <form class="flex flex-col my-6">
       <label class="font-medium text-white">Name:</label>
-      <input [(ngModel)]="client.name" type="text" placeholder="Digite seu nome completo..."
+      <input [(ngModel)]="client.name" type="text" placeholder="Digite o nome do cliente..."
         class="w-full mb-5 p-2 rounded" name="name" [ngClass]="{ 'border-red-500': validation && !client.name }" />
 
       <label class="font-medium text-white">E-mail:</label>
-      <input [(ngModel)]="client.email" type="email" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
-        name="email" [ngClass]="{ 'border-red-500': validation && !client.email }" />
+      <input [(ngModel)]="client.email" type="email" placeholder="Digite o e-mail do cliente..."
+        class="w-full mb-5 p-2 rounded" name="email" [ngClass]="{ 'border-red-500': validation && !client.email }" />
 
-      <label class="font-medium text-white">Status:</label>
-      <input [(ngModel)]="client.status" type="text" placeholder="Digite seu e-mail..." class="w-full mb-5 p-2 rounded"
-        name="status" [ngClass]="{ 'border-red-500': validation && !client.status }" />
+      <label class="font-medium text-white">CPF:</label>
+      <input [(ngModel)]="client.cpf" type="number" placeholder="Digite o CPF do cliente..."
+        class="w-full mb-5 p-2 rounded" name="cpf" [ngClass]="{ 'border-red-500': validation && !client.cpf}" />
+
+      <label class="font-medium text-white">Phone:</label>
+      <input [(ngModel)]="client.phone" type="number" placeholder="Digite o telefone do cliente..."
+        class="w-full mb-5 p-2 rounded" name="phone" [ngClass]="{ 'border-red-500': validation && !client.phone }" />
 
       <input (click)="createClient()" type="submit" value="Cadastrar"
-        class="cursor-pointer w-full p-2 bg-green-500 rounded font-medium text-white" />
+        class="cursor-pointer w-full p-2 bg-green-600 rounded font-medium text-white" />
     </form>
 
     <section class="flex flex-col gap-4">
       <article *ngFor="let client of clients" class="w-full bg-white rounded p-2 relative hover:scale-105 duration-200">
-        <p><span class="font-medium">Nome: </span> {{ client.name }} </p>
-        <p><span class="font-medium">E-mail: </span> {{ client.email }} </p>
-        <p><span class="font-medium">Status: </span> {{ client.status }} </p>
+        <p><span class="font-semibold">Nome: </span> {{ client.name }} </p>
+        <p><span class="font-semibold">E-mail: </span> {{ client.email }} </p>
+        <p><span class="font-semibold">CPF: </span> {{ client.cpf }} </p>
+        <p><span class="font-semibold">Phone: </span> {{ client.phone }} </p>
 
         <button (click)="removeClient(client.id)"
           class="bg-red-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-0 -top-2">

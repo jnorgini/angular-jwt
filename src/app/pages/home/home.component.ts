@@ -16,6 +16,7 @@ export class HomeComponent implements OnInit {
   client = new Client();
   clients: Client[] = [];
   validation = false;
+  nameFocused = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -41,7 +42,7 @@ export class HomeComponent implements OnInit {
 
   createClient(): void {
     this.validation = true;
-    if (!this.client.name || !this.client.email || !this.client.status) {
+    if (!this.client.name || !this.client.email || !this.client.cpf || !this.client.phone) {
       alert('Por favor, preencha todos os campos');
       return;
     }
