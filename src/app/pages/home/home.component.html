@@ -62,7 +62,7 @@
           <span *ngIf="validation && !client.cpf" class="text-red-500">*CPF</span>
         </label>
         <i class="fa fa-id-card absolute top-4 left-3 text-white"></i>
-        <input id="cpf" [(ngModel)]="client.cpf" type="cpf" placeholder=""
+        <input id="cpf" [(ngModel)]="client.cpf" type="cpf" mask="000.000.000-00" placeholder=""
           class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="cpf"
           [ngClass]="{
         'border-green': hasText(client.cpf),
@@ -80,7 +80,7 @@
           <span *ngIf="validation && !client.phone" class="text-red-500">*Phone</span>
         </label>
         <i class="fa fa-phone absolute top-4 left-3 text-white"></i>
-        <input id="phone" [(ngModel)]="client.phone" type="tel" placeholder=""
+        <input id="phone" [(ngModel)]="client.phone" type="tel" mask="(00) 0 0000-0000" placeholder=""
           class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="phone"
           [ngClass]="{
         'border-green': hasText(client.phone),
@@ -100,8 +100,8 @@
       <article *ngFor="let client of clients" class="w-full bg-white rounded p-2 relative hover:scale-105 duration-200">
         <p><span class="font-semibold">Nome: </span> {{ client.name }} </p>
         <p><span class="font-semibold">E-mail: </span> {{ client.email }} </p>
-        <p><span class="font-semibold">CPF: </span> {{ client.cpf  }}</p>
-        <p><span class="font-semibold">Phone: </span> {{ client.phone }}</p>
+        <p><span class="font-semibold">CPF: </span> {{ client.cpf | mask: '000.000.000-00' }}</p>
+        <p><span class="font-semibold">Phone: </span> {{ client.phone | mask: '(00) 0 0000-0000' }}</p>
 
         <button (click)="removeClient(client.id)"
           class="bg-red-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-0 -top-2">
