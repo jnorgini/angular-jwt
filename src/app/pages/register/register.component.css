@@ -21,8 +21,7 @@
 }
 
 .register-page button:hover {
-  background-color: white;
-  color: black;
+  background-color: rgb(79 70 229);
 }
 
 .register-page button:active {
