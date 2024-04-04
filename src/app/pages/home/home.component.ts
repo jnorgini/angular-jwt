@@ -3,7 +3,7 @@ import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
-import { catchError, tap } from 'rxjs';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,9 @@ export class HomeComponent implements OnInit {
   clients: Client[] = [];
   validation = false;
   nameFocused = false;
+  emailFocused = false;
+  cpfFocused = false;
+  phoneFocused = false;
 
   constructor(
     private authService: AuthenticationService,
@@ -43,11 +46,11 @@ export class HomeComponent implements OnInit {
   createClient(): void {
     this.validation = true;
     if (!this.client.name || !this.client.email || !this.client.cpf || !this.client.phone) {
-      alert('Por favor, preencha todos os campos');
+      console.log('Por favor, preencha todos os campos');
       return;
     }
     if (!this.isEmailValid(this.client.email)) {
-      alert('Por favor, insira um email válido');
+      console.log('Por favor, insira um email válido');
       return;
     }
     this.clientService.addClient(this.client)
@@ -85,6 +88,10 @@ export class HomeComponent implements OnInit {
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
     });
+  }
+
+  hasText(inputValue: string): boolean {
+    return !!inputValue;
   }
 
 }
