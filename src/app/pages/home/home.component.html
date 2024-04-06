@@ -23,7 +23,7 @@
         <label for="name" class="absolute top-3 left-9 transition-all duration-300 text-white bg-gray-900"
           [class.label-active]="nameFocused || client.name">
           {{ validation && !client.name ? '' : 'Digite o nome do cliente...' }}
-          <span *ngIf="validation && !client.name" class="text-red-500">*Username</span>
+          <span *ngIf="validation && !client.name" class="text-red-500">*Name</span>
         </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
         <input id="name" [(ngModel)]="client.name" type="text" placeholder=""
