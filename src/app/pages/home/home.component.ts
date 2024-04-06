@@ -11,8 +11,8 @@ import { catchError } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  currentUser: User | null = null;
-  currentUserVisible: boolean = false;
+  // currentUser: User | null = null;
+  // currentUserVisible: boolean = false;
   client = new Client();
   clients: Client[] = [];
   validation = false;
@@ -20,14 +20,12 @@ export class HomeComponent implements OnInit {
   emailFocused = false;
   cpfFocused = false;
   phoneFocused = false;
+  searchQuery: string = '';
 
-  constructor(
-    private authService: AuthenticationService,
-    private clientService: ClientService
-  ) { }
+  constructor(private authService: AuthenticationService, private clientService: ClientService) { }
 
   ngOnInit(): void {
-    this.userDetails();
+    // this.userDetails();
     this.getClient();
   }
 
@@ -80,18 +78,29 @@ export class HomeComponent implements OnInit {
       })
   }
 
-  toggleUserDetails(): void {
-    this.currentUserVisible = !this.currentUserVisible;
-  }
+  // toggleUserDetails(): void {
+  //   this.currentUserVisible = !this.currentUserVisible;
+  // }
 
-  userDetails(): void {
-    this.authService.getCurrentUser().subscribe(user => {
-      this.currentUser = user;
-    });
-  }
+  // userDetails(): void {
+  //   this.authService.getCurrentUser().subscribe(user => {
+  //     this.currentUser = user;
+  //   });
+  // }
 
   hasText(inputValue: string): boolean {
     return !!inputValue;
+  }
+
+  filterClients(searchQuery: string): void {
+    if (!searchQuery.trim()) {
+      this.getClient();
+    } else {
+      this.clients = this.clients.filter(client =>
+        client.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        client.email.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
   }
 
 }

@@ -12,10 +12,10 @@
 </div>
 
 <hr /> -->
-<app-header />
+<app-header (searchQueryChange)="filterClients($event)" />
 
-<div class="home-page w-full min-h-screen flex justify-center px-4 bg-gray-900">
-  <main class="my-10 w-full md:max-w-xl">
+<div class="home-page bg-gray-900 min-h-screen flex justify-center px-4">
+  <main class="my-10 w-full md:max-w-xl pb-8">
     <h1 class="text-4xl font-semibold text-white">Clientes</h1>
 
     <form class="flex flex-col my-6">

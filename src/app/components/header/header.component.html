@@ -6,16 +6,17 @@
     <div class="relative">
       <span class="absolute mt-1.5 mx-3"><i class="fa fa-search text-white align-middle"></i></span>
       <div class="search-container" [ngClass]="{'expanded': isExpanded}">
-        <input id="member_email"
-          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-          placeholder="Search..." (focus)="expandInput()" (blur)="contractInput()" (input)="checkInput()"
-          [(ngModel)]="searchQuery">
+        <input id="member_email" [(ngModel)]="searchQuery" (input)="onSearchQueryChange()"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded
+           focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search..." (focus)="expandInput()" (blur)="contractInput()">
       </div>
     </div>
 
     <button class="button-search ml-1">
-      <span
-        class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</span>
+      <span class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded cursor-pointer
+         hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600
+          dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</span>
     </button>
   </div>
 

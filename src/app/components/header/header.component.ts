@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthenticationService } from '../../services/authentication.service';
 
@@ -8,11 +8,17 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  @Output() searchQueryChange = new EventEmitter<string>();
+
   isModalOpen = false;
   isExpanded: boolean = false;
   searchQuery: string = '';
 
   constructor(private authService: AuthenticationService, private router: Router) { }
+
+  onSearchQueryChange(): void {
+    this.searchQueryChange.emit(this.searchQuery);
+  }
 
   logout() {
     this.authService.logout();
