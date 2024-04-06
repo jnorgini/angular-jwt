@@ -1,11 +1,12 @@
 .icon {
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   display: inline-block;
   transition: transform 0.3s ease, filter 0.3s ease;
 }
 
 .icon:hover {
+  color: rgb(204, 196, 196);
   transform: translateY(-3px);
 }
 
@@ -16,3 +17,18 @@
 .icon:active:hover {
   filter: brightness(0.8) saturate(100%);
 }
+
+.search-container {
+  width: 200px;
+  transition: width 0.3s ease;
+}
+
+.expanded {
+  width: 300px;
+}
+
+.button-search:active {
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}
+

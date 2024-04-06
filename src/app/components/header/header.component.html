@@ -1,16 +1,47 @@
-<nav class="w-full flex justify-between items-center p-4 bg-gray-700">
+<nav class="fixed w-full top-0 left-0 flex justify-between items-center p-3 bg-gray-900 border border-black">
   <div class="logo">
-    <span class="text-gray-200 text-4xl flex justify-start items-center">Management</span>
+    <i class="fa fa-code text-gray-200 text-4xl flex justify-start align-middle items-center" routerLink="/home"></i>
   </div>
-  <div class="search relative">
-    <span class="absolute mt-1.5 mx-3"><i class="fa fa-search font-light" aria-hidden="true"></i></span>
-    <input type="text" placeholder="Search" class="w-96 p-2 pl-9 rounded rounded-r-none text-gray-600">
-    <button class="bg-slate-400 p-2 rounded-r text-white outline-none outline-0">Search</button>
+  <div class="flex items-center justify-between">
+    <div class="relative">
+      <span class="absolute mt-1.5 mx-3"><i class="fa fa-search text-white align-middle"></i></span>
+      <div class="search-container" [ngClass]="{'expanded': isExpanded}">
+        <input id="member_email"
+          class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+          placeholder="Search..." (focus)="expandInput()" (blur)="contractInput()" (input)="checkInput()"
+          [(ngModel)]="searchQuery">
+      </div>
+    </div>
+
+    <button class="button-search ml-1">
+      <span
+        class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</span>
+    </button>
   </div>
+
   <div class="nav-items">
-    <span routerLink="/login" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Login</span>
-    <span routerLink="/register" class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200">Register</span>
-    <span class="text-xl cursor-pointer text-gray-200 font-bold m-3 hover:underline hover:text-indigo-200" (click)="logout()">Logout</span>
-    <i class="fa fa-user icon"></i>
+    <i class="fa fa-user icon" (click)="openModal()"></i>
   </div>
 </nav>
+
+<div class="fixed z-10 inset-0 overflow-y-auto" *ngIf="isModalOpen">
+  <div class="flex items-start justify-end min-h-screen">
+    <div class="bg-white w-1/5 rounded shadow-lg mt-16 mr-4">
+      <div class="modal-header flex justify-between items-center bg-gray-700 text-white p-4">
+        <h5 class="modal-title">User Options</h5>
+        <button (click)="closeModal()" class="text-white">&times;</button>
+      </div>
+      <div class="modal-body">
+        <ul class="list-none p-0">
+          <li class="p-4 border-b cursor-pointer hover:bg-gray-100">Option 1</li>
+          <li class="p-4 border-b cursor-pointer hover:bg-gray-100">Option 2</li>
+          <li class="p-4 cursor-pointer hover:bg-gray-100">Option 3</li>
+          <li class="p-4 border-b cursor-pointer hover:bg-gray-100">Logout<i
+              class="p-4 border-b cursor-pointer hover:bg-gray-100 fa fa-sign-out" (click)="logout()"></i></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mt-16"></div>
