@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { User } from '../../models/User';
-import { AuthenticationService } from '../../services/authentication.service';
 import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
 import { catchError } from 'rxjs';
@@ -11,8 +9,6 @@ import { catchError } from 'rxjs';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  // currentUser: User | null = null;
-  // currentUserVisible: boolean = false;
   client = new Client();
   clients: Client[] = [];
   validation = false;
@@ -22,10 +18,9 @@ export class HomeComponent implements OnInit {
   phoneFocused = false;
   searchQuery: string = '';
 
-  constructor(private authService: AuthenticationService, private clientService: ClientService) { }
+  constructor(private clientService: ClientService) { }
 
   ngOnInit(): void {
-    // this.userDetails();
     this.getClient();
   }
 
@@ -77,16 +72,6 @@ export class HomeComponent implements OnInit {
         this.clients = this.clients.filter(client => client.id !== id);
       })
   }
-
-  // toggleUserDetails(): void {
-  //   this.currentUserVisible = !this.currentUserVisible;
-  // }
-
-  // userDetails(): void {
-  //   this.authService.getCurrentUser().subscribe(user => {
-  //     this.currentUser = user;
-  //   });
-  // }
 
   hasText(inputValue: string): boolean {
     return !!inputValue;
