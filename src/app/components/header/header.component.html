@@ -25,19 +25,20 @@
     <div class="absolute">
       <div class="fixed z-10 inset-0 overflow-y-auto bg-black bg-opacity-50" *ngIf="isModalOpen">
         <div class="flex justify-end items-start min-h-screen pt-16">
-          <div class="bg-gray-800 w-2/3 md:w-1/2 lg:w-1/4 rounded-lg shadow-lg">
-            <div class="modal-header flex items-center justify-between bg-gray-900 text-white p-4 rounded-t-lg">
+          <div class="bg-gray-900 w-2/3 md:w-1/2 lg:w-1/4 rounded-lg shadow-lg">
+            <div
+              class="modal-header flex items-center justify-between bg-gray-900 text-white p-4 rounded-t-lg border-b border-orange-500">
               <h2 class="modal-title font-bold text-lg"><i class="fas fa-circle mr-2 text-green-500"></i>
-              {{ currentUser?.status === 'ONLINE' ? 'Online' : currentUser?.status }}</h2>
+                {{ currentUser?.status === 'ONLINE' ? 'Online' : currentUser?.status }}</h2>
               <button (click)="closeModal()" class="text-white text-2xl focus:outline-none">
                 <i class="fa fa-window-close"></i>
               </button>
             </div>
             <div class="modal-body p-4">
               <section class="flex flex-col gap-4">
-                <article class="w-full bg-gray-700 text-white p-4 rounded-lg border-l-2 border-orange-500">
+                <article class="w-full bg-gray-900 text-white p-4 rounded-lg shadow-md shadow-orange-500">
                   <p><i class="fas fa-user mr-2"></i><span class="font-semibold">Username: </span>
-                  {{ currentUser?.username }}</p>
+                    {{ currentUser?.username }}</p>
                   <p><i class="fas fa-envelope mr-2"></i><span class="font-semibold">E-mail: </span>
                     {{ currentUser?.email }}</p>
                   <p><i class="fas fa-user-circle mr-2"></i><span class="font-semibold">First Name: </span>
@@ -46,13 +47,21 @@
                     {{ currentUser?.lastName }}</p>
                   <!-- <p><i class="fas fa-info-circle mr-2"></i><span class="font-semibold">Status: </span> {{ currentUser?.status }}</p> -->
                   <p><i class="fas fa-user-shield mr-2"></i><span class="font-semibold">Role: </span>
-                  {{ currentUser?.role }}</p>
+                    {{ currentUser?.role }}</p>
                 </article>
               </section>
-              <button (click)="logout()"
-                class="mt-4 py-2 px-4 dark:bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none">
-                Logout <i class="ml-2 fas fa-sign-out-alt"></i>
-              </button>
+              <div class="flex justify-between">
+
+                <button routerLink="/edit"
+                  class="flex-1 mt-4 py-2 px-4 mr-1 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none">
+                  Edit User <i class="ml-2 fa-solid fa-pen-to-square"></i>
+                </button>
+
+                <button (click)="logout()"
+                  class="flex-1 mt-4 py-2 px-4 ml-1 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none">
+                  Logout <i class="ml-2 fas fa-sign-out-alt"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
