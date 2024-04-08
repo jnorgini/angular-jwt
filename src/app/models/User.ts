@@ -5,11 +5,7 @@ export class User {
   firstName = '';
   lastName = '';
   password = '';
-  status = '';
-  role = '';
-  enabled!: boolean;
-  authorities!: { authority: string }[]
-  credentialsNonExpired!: boolean;
-  accountNonExpired!: boolean;
-  accountNonLocked!: boolean;
+  confirmPassword = '';
+  status = 'ONLINE';
+  role = 'ADMIN';
 }
