@@ -13,6 +13,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TokenInterceptor } from './auth/token.interceptor';
+import { EditUserComponent } from './pages/edit-user/edit-user.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TokenInterceptor } from './auth/token.interceptor';
     FooterComponent,
     RegisterComponent,
     HomeComponent,
+    EditUserComponent,
   ],
   imports: [
     BrowserModule,

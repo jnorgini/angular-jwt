@@ -1,0 +1,154 @@
+<div class="edit-page-wrapper">
+  <div class="edit-page
+  p-10 shadow-lg bg-gray-900 border-2 border-white rounded-md text-white">
+    <h3 class="text-3xl text-center font-semibold py-5">Edit User</h3>
+    <form class="flex flex-col">
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="firstName" class="teste absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="firstNameFocused || user.firstName">
+          {{ validation && !user.firstName ? '' : 'First Name' }}
+          <span *ngIf="validation && !user.firstName" class="text-red-500">*First Name</span>
+        </label>
+        <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+        <input id="firstName" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.firstName" name="firstName" type="text" required
+          [ngClass]="{
+          'border-green': hasText(user.firstName),
+          'border-red-500': validation && !user.firstName
+        }"
+        (focus)="firstNameFocused = true"
+        (blur)="firstNameFocused = false">
+        <div *ngIf="validation && !user.firstName"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*First Name is required.</p>
+        </div>
+      </div>
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="lastName" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="lastNameFocused || user.lastName">
+          {{ validation && !user.lastName ? '' : 'Last Name' }}
+          <span *ngIf="validation && !user.lastName" class="text-red-500">*Last Name</span>
+        </label>
+        <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+        <input id="lastName" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.lastName" name="lastName" type="text" placeholder=""
+          [ngClass]="{
+          'border-green': hasText(user.lastName),
+          'border-red-500': validation && !user.lastName
+         }"
+         (focus)="lastNameFocused = true"
+         (blur)="lastNameFocused = false">
+        <div *ngIf="validation && !user.lastName"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Last Name is required.</p>
+        </div>
+      </div>
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="username" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="usernameFocused || user.username">
+          {{ validation && !user.username ? '' : 'Username' }}
+          <span *ngIf="validation && !user.username" class="text-red-500">*Username</span>
+        </label>
+        <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+        <input id="username" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.username" name="username" type="text" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(user.username),
+            'border-red-500': validation && !user.username }"
+            (focus)="usernameFocused = true"
+            (blur)="usernameFocused = false"
+            autocomplete="username">
+        <div *ngIf="validation && !user.username"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Username is required</p>
+        </div>
+      </div>
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="email" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="emailFocused || user.email">
+          {{ validation && !user.email ? '' : 'E-mail' }}
+          <span *ngIf="validation && !user.email" class="text-red-500">E-mail</span>
+        </label>
+        <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
+        <input id="email" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.email" name="email" type="text" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(user.email),
+            'border-red-500': validation && !user.email }"
+            (focus)="emailFocused = true"
+            (blur)="emailFocused = false"
+            autocomplete="email">
+        <div *ngIf="validation && !user.email"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*E-mail is required.</p>
+        </div>
+      </div>
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="password" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="passwordFocused || user.password">
+          {{ validation && !user.password ? '' : 'Password' }}
+          <span *ngIf="validation && !user.password" class="text-red-500">*Password</span>
+        </label>
+        <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
+        <input id="password" #passwordInput
+          class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.password" name="password" type="password" placeholder=""
+          [ngClass]="{
+            'border-green': hasText(user.password),
+            'border-red-500': validation && !user.password
+            }"
+            (focus)="passwordFocused = true"
+            (blur)="passwordFocused = false"
+            autocomplete="current-password">
+        <div *ngIf="validation && !user.password"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Password is required.</p>
+        </div>
+        <i *ngIf="passwordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
+          (click)="togglePasswordVisibility(passwordInput)"></i>
+        <i *ngIf="!passwordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
+          (click)="togglePasswordVisibility(passwordInput)"></i>
+      </div>
+      <div class="flex flex-col mt-4 mb-1 relative">
+        <label for="confirmPassword" class="absolute top-3 left-9 transition-all duration-300 text-white"
+          [class.label-active]="confirmPasswordFocused || user.confirmPassword">
+          {{ validation && !user.confirmPassword ? '' : 'Confirm Password' }}
+          <span *ngIf="validation && !user.confirmPassword" class="text-red-500">*Confirm Password</span>
+        </label>
+        <i class="fa fa-lock absolute top-4 left-3 text-white"></i>
+        <input id="confirmPassword" #confirmPasswordInput
+          class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
+          [(ngModel)]="user.confirmPassword" name="password" type="password" placeholder=""
+          [ngClass]="{
+          'border-green': hasText(user.confirmPassword),
+          'border-red-500': validation && !user.confirmPassword
+          }"
+          (focus)="confirmPasswordFocused = true"
+          (blur)="confirmPasswordFocused = false"
+          autocomplete="confirmPassowrd">
+        <div *ngIf="validation && !user.password"
+          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
+          <p>*Passowrd is required.</p>
+        </div>
+        <i *ngIf="confirmPasswordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
+          (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
+        <i *ngIf="!confirmPasswordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
+          (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
+      </div>
+      <div class="flex flex-col mt-4 mb-1" style="display: none;">
+        <select id="role" name="role" [(ngModel)]="user.role">
+          <option value="ADMIN" selected hidden></option>
+        </select>
+      </div>
+      <div class="flex flex-col mt-4 mb-1" style="display: none;">
+        <select id="status" name="status" [(ngModel)]="user.status">
+          <option value="ONLINE" selected hidden></option>
+        </select>
+      </div>
+      <button class="bg-indigo-900 p-2 rounded mt-3 text-white" (click)="updateUser()">Save</button>
+    </form>
+    <div class="flex justify-center mt-5">
+      <span>Finished modifying your account?</span> <a class="text-white ml-2 hover:underline cursor-pointer"
+         (click)="logout()">Login again here</a>
+    </div>
+  </div>
