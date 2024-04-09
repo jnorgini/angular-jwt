@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Register } from '../../models/Register';
-import { JwtAuth } from '../../models/JwtAuth';
 import { AuthenticationService } from '../../services/authentication.service';
+import { catchError } from 'rxjs';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-register',
@@ -9,8 +9,7 @@ import { AuthenticationService } from '../../services/authentication.service';
   styleUrl: './register.component.css'
 })
 export class RegisterComponent {
-  registerDto = new Register();
-  jwtDto = new JwtAuth();
+  registerDto = new User();
   validation = false;
   passwordVisible = false;
   confirmPasswordVisible = false;
@@ -49,14 +48,19 @@ export class RegisterComponent {
     return true;
   }
 
-  register(registerDto: Register) {
+  register(registerDto: User) {
     this.validation = true;
     if (!this.validateFields()) {
       return;
     }
-    this.authService.register(registerDto).subscribe((userData: any) => {
-      console.log(userData);
-      this.registerDto = new Register();
+    this.authService.register(registerDto).pipe(
+      catchError((error) => {
+        console.log('Failed to create user.');
+        throw error;
+      })
+    ).subscribe(() => {
+      console.log('User created successfully!');
+      this.registerDto = new User();
       this.validation = false;
     });
   }

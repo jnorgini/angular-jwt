@@ -30,7 +30,7 @@ export class HeaderComponent implements OnInit {
   logout() {
     this.authService.logout();
     this.router.navigate(['/login']);
-    console.log('Disconnected. Token has been removed.')
+    console.log('Disconnected. Token has been removed.');
   }
 
   openModal() {
@@ -62,7 +62,6 @@ export class HeaderComponent implements OnInit {
   userDetails(): void {
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
-      console.log(user);
     });
   }
 

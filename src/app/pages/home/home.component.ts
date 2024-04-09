@@ -27,7 +27,6 @@ export class HomeComponent implements OnInit {
   getClient() {
     this.clientService.getClients().subscribe(data => {
       this.clients = data;
-      console.log(data);
     });
   }
 
