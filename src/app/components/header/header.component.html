@@ -52,7 +52,7 @@
               </section>
               <div class="flex justify-between">
 
-                <button routerLink="/edit"
+                <button [routerLink]="['/edit', currentUser?.id]"
                   class="flex-1 mt-4 py-2 px-4 mr-1 bg-blue-700 text-white font-semibold rounded-md hover:bg-blue-800 focus:outline-none">
                   Edit User <i class="ml-2 fa-solid fa-pen-to-square"></i>
                 </button>
