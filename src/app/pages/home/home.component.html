@@ -13,14 +13,10 @@
         </label>
         <i class="fa fa-user absolute top-4 left-3 text-white"></i>
         <input id="name" [(ngModel)]="client.name" type="text" placeholder=""
-          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="name"
-          [ngClass]="{
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="name" [ngClass]="{
           'border-green': hasText(client.name),
           'border-red-500': validation && !client.name
-          }"
-          (focus)="nameFocused = true"
-          (blur)="nameFocused = false"
-          autocomplete="name" />
+          }" (focus)="nameFocused = true" (blur)="nameFocused = false" autocomplete="name" />
       </div>
 
       <div class="flex flex-col mt-2 mb-1 relative">
@@ -31,14 +27,10 @@
         </label>
         <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
         <input id="email" [(ngModel)]="client.email" type="email" placeholder=""
-          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="email"
-          [ngClass]="{
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="email" [ngClass]="{
         'border-green': hasText(client.email),
         'border-red-500': validation && !client.email
-        }"
-        (focus)="emailFocused = true"
-        (blur)="emailFocused = false"
-        autocomplete="email" />
+        }" (focus)="emailFocused = true" (blur)="emailFocused = false" autocomplete="email" />
       </div>
 
       <div class="flex flex-col mt-2 mb-1 relative">
@@ -49,14 +41,10 @@
         </label>
         <i class="fa fa-id-card absolute top-4 left-3 text-white"></i>
         <input id="cpf" [(ngModel)]="client.cpf" type="cpf" mask="000.000.000-00" placeholder=""
-          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="cpf"
-          [ngClass]="{
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="cpf" [ngClass]="{
         'border-green': hasText(client.cpf),
         'border-red-500': validation && !client.cpf
-        }"
-        (focus)="cpfFocused = true"
-        (blur)="cpfFocused = false"
-        autocomplete="cpf" />
+        }" (focus)="cpfFocused = true" (blur)="cpfFocused = false" autocomplete="cpf" />
       </div>
 
       <div class="flex flex-col mt-2 mb-1 relative">
@@ -67,17 +55,14 @@
         </label>
         <i class="fa fa-phone absolute top-4 left-3 text-white"></i>
         <input id="phone" [(ngModel)]="client.phone" type="tel" mask="(00) 0 0000-0000" placeholder=""
-          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="phone"
-          [ngClass]="{
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="phone" [ngClass]="{
         'border-green': hasText(client.phone),
         'border-red-500': validation && !client.phone
-        }"
-        (focus)="phoneFocused = true"
-        (blur)="phoneFocused = false"
-        autocomplete="phone" />
+        }" (focus)="phoneFocused = true" (blur)="phoneFocused = false" autocomplete="phone" />
       </div>
 
-      <input (click)="createClient()" type="submit" value="Cadastrar"
+      <input (click)="saveClient()" type="submit" [value]="isEditMode ? 'Salvar' : 'Cadastrar'" type="submit"
+        value="Cadastrar" type="submit" value="Cadastrar"
         class="submit-button cursor-pointer w-full mt-3 p-2 bg-green-600 rounded font-medium text-white" />
 
     </form>
@@ -88,6 +73,11 @@
         <p><span class="font-semibold">E-mail: </span> {{ client.email }} </p>
         <p><span class="font-semibold">CPF: </span> {{ client.cpf | mask: '000.000.000-00' }}</p>
         <p><span class="font-semibold">Phone: </span> {{ client.phone | mask: '(00) 0 0000-0000' }}</p>
+
+        <button (click)="editClient(client)"
+          class="bg-blue-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-8 -top-2">
+          <i class="fa fa-pen fa-18 text-white" aria-hidden="true"></i>
+        </button>
 
         <button (click)="removeClient(client.id)"
           class="bg-red-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-0 -top-2">

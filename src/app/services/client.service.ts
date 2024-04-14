@@ -26,8 +26,8 @@ export class ClientService {
     return this.http.post<Client>(URL, client);
   }
 
-  updateClient(id: number, client: Client): Observable<Client> {
-    const url = `${URL}/${id}`;
+  updateClient(client: Client): Observable<Client> {
+    const url = `${URL}/${client.id}`;
     return this.http.put<Client>(url, client);
   }
 

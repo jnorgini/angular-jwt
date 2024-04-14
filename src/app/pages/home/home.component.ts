@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
-import { catchError } from 'rxjs';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-home',
@@ -17,6 +17,7 @@ export class HomeComponent implements OnInit {
   cpfFocused = false;
   phoneFocused = false;
   searchQuery: string = '';
+  isEditMode = false;
 
   constructor(private clientService: ClientService) { }
 
@@ -33,6 +34,22 @@ export class HomeComponent implements OnInit {
   isEmailValid(email: string): boolean {
     const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     return emailPattern.test(email);
+  }
+
+  saveClient(): void {
+    if (this.isEditMode) {
+      this.updateClient(this.client);
+    } else {
+      this.createClient();
+    }
+  }
+
+  editClient(client: Client) {
+    this.clientService.getClient(client.id)
+      .subscribe((data: Client) => {
+        this.client = { ...data };
+        this.isEditMode = true;
+      });
   }
 
   createClient(): void {
@@ -55,6 +72,26 @@ export class HomeComponent implements OnInit {
         console.log('Client successfully registered!');
         this.clients.push(newClient);
         this.client = new Client();
+        this.validation = false;
+      });
+  }
+
+  updateClient(client: Client): void {
+    this.validation = true;
+    this.clientService.updateClient(client)
+      .pipe(
+        catchError((error) => {
+          console.log('Error when trying to update the client.', error);
+          throw error;
+        }),
+      )
+      .subscribe((updatedClient: Client) => {
+        console.log('Client updated successfully!');
+        const index = this.clients.findIndex(c => c.id === updatedClient.id);
+        if (index !== -1) {
+          this.clients[index] = updatedClient;
+        }
+        this.client = { ...updatedClient };
         this.validation = false;
       });
   }
