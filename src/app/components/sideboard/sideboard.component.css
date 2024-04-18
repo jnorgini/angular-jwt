@@ -1,0 +1,16 @@
+.sidebar {
+  transition: left 0.3s ease;
+}
+
+.open {
+  left: 0;
+}
+
+.closed {
+  left: -300px;
+}
+
+.sidebar {
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
