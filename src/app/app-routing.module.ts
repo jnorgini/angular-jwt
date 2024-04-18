@@ -5,13 +5,15 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './auth/authGuard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
+import { SideboardComponent } from './components/sideboard/sideboard.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
-  { path: 'home', component: HomeComponent, canActivate:[authGuard] },
+  { path: 'sideboard', component: SideboardComponent, canActivate: [authGuard] },
+  { path: 'home', component: HomeComponent  },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'edit/:id', component: EditUserComponent, canActivate:[authGuard] },
+  { path: 'edit/:id', component: EditUserComponent, canActivate: [authGuard] },
 ];
 
 @NgModule({
