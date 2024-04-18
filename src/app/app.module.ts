@@ -14,7 +14,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
-import { SideboardComponent } from './components/sideboard/sideboard.component';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +25,7 @@ import { SideboardComponent } from './components/sideboard/sideboard.component';
     RegisterComponent,
     HomeComponent,
     EditUserComponent,
-    SideboardComponent,
+    SidebarComponent,
   ],
   imports: [
     BrowserModule,

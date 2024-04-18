@@ -3,11 +3,11 @@ import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-sideboard',
-  templateUrl: './sideboard.component.html',
-  styleUrls: ['./sideboard.component.css']
+  selector: 'app-sidebar',
+  templateUrl: './sidebar.component.html',
+  styleUrls: ['./sidebar.component.css']
 })
-export class SideboardComponent {
+export class SidebarComponent {
   isSubMenuHidden: boolean = true;
   isArrowUp: boolean = false;
   isSidebarOpen: boolean = false;
