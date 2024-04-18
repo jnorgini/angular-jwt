@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
 import { catchError, throwError } from 'rxjs';
+import { ViewportScroller } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +20,7 @@ export class HomeComponent implements OnInit {
   searchQuery: string = '';
   isEditMode = false;
 
-  constructor(private clientService: ClientService) { }
+  constructor(private clientService: ClientService, private viewportScroller: ViewportScroller) { }
 
   ngOnInit(): void {
     this.getClient();
@@ -49,6 +50,7 @@ export class HomeComponent implements OnInit {
       .subscribe((data: Client) => {
         this.client = { ...data };
         this.isEditMode = true;
+        this.viewportScroller.scrollToPosition([0, 0]);
       });
   }
 
@@ -92,6 +94,7 @@ export class HomeComponent implements OnInit {
           this.clients[index] = updatedClient;
         }
         this.client = { ...updatedClient };
+        this.client = new Client();
         this.validation = false;
       });
   }
