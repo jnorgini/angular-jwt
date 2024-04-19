@@ -15,6 +15,8 @@ import { HomeComponent } from './pages/home/home.component';
 import { TokenInterceptor } from './auth/token.interceptor';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { InfoComponent } from './components/info/info.component';
+import { ClientsComponent } from './pages/clients/clients.component';
 
 @NgModule({
   declarations: [
@@ -26,6 +28,8 @@ import { SidebarComponent } from './components/sidebar/sidebar.component';
     HomeComponent,
     EditUserComponent,
     SidebarComponent,
+    InfoComponent,
+    ClientsComponent,
   ],
   imports: [
     BrowserModule,

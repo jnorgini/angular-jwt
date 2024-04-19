@@ -6,11 +6,15 @@ import { HomeComponent } from './pages/home/home.component';
 import { authGuard } from './auth/authGuard';
 import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
+import { InfoComponent } from './components/info/info.component';
+import { ClientsComponent } from './pages/clients/clients.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'sideboard', component: SidebarComponent, canActivate: [authGuard] },
-  { path: 'home', component: HomeComponent  },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard]  },
+  { path: 'clients', component: ClientsComponent, canActivate: [authGuard] },
+  { path: 'info', component: InfoComponent, canActivate: [authGuard] },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'edit/:id', component: EditUserComponent, canActivate: [authGuard] },
