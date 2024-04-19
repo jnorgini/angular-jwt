@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
 
@@ -7,19 +7,26 @@ import { Router } from '@angular/router';
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.css']
 })
-export class SidebarComponent {
-  isSubMenuHidden: boolean = true;
-  isArrowUp: boolean = false;
-  isSidebarOpen: boolean = false;
+export class SidebarComponent implements OnInit {
+  isSubMenuHidden = true;
+  isArrowUp = false;
+  isSidebarOpen!: boolean;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
+  ngOnInit() {
+    const storedSidebarState = localStorage.getItem('sidebarState');
+    this.isSidebarOpen = storedSidebarState ? JSON.parse(storedSidebarState) : false;
+  }
+
   open() {
     this.isSidebarOpen = true;
+    localStorage.setItem('sidebarState', JSON.stringify(this.isSidebarOpen));
   }
 
   close() {
     this.isSidebarOpen = false;
+    localStorage.setItem('sidebarState', JSON.stringify(this.isSidebarOpen));
   }
 
   dropdown() {
