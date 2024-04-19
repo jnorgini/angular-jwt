@@ -1,0 +1,91 @@
+<app-header (searchQueryChange)="filterClients($event)" />
+
+<div class="home-page bg-gray-900 min-h-screen flex justify-center px-4 pt-20">
+  <main class="my-10 w-full md:max-w-xl pb-8">
+    <h1 class="text-4xl font-semibold text-white">Clientes</h1>
+
+    <form class="flex flex-col my-6">
+      <div class="flex flex-col mt-1 mb-1 relative">
+        <label for="name" class="absolute top-3 left-9 transition-all duration-300 text-white bg-gray-900"
+          [class.label-active]="nameFocused || client.name">
+          {{ validation && !client.name ? '' : 'Digite o nome do cliente...' }}
+          <span *ngIf="validation && !client.name" class="text-red-500">*Name</span>
+        </label>
+        <i class="fa fa-user absolute top-4 left-3 text-white"></i>
+        <input id="name" [(ngModel)]="client.name" type="text" placeholder=""
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="name" [ngClass]="{
+          'border-green': hasText(client.name),
+          'border-red-500': validation && !client.name
+          }" (focus)="nameFocused = true" (blur)="nameFocused = false" autocomplete="name" />
+      </div>
+
+      <div class="flex flex-col mt-2 mb-1 relative">
+        <label for="email" class="absolute top-3 left-9 transition-all duration-300 text-white bg-gray-900"
+          [class.label-active]="emailFocused || client.email">
+          {{ validation && !client.email ? '' : 'Digite o e-mail do cliente...' }}
+          <span *ngIf="validation && !client.email" class="text-red-500">*E-mail</span>
+        </label>
+        <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
+        <input id="email" [(ngModel)]="client.email" type="email" placeholder=""
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="email" [ngClass]="{
+        'border-green': hasText(client.email),
+        'border-red-500': validation && !client.email
+        }" (focus)="emailFocused = true" (blur)="emailFocused = false" autocomplete="email" />
+      </div>
+
+      <div class="flex flex-col mt-2 mb-1 relative">
+        <label for="cpf" class="absolute top-3 left-9 transition-all duration-300 text-white bg-gray-900"
+          [class.label-active]="cpfFocused || client.cpf">
+          {{ validation && !client.cpf ? '' : 'Digite o CPF do cliente...' }}
+          <span *ngIf="validation && !client.cpf" class="text-red-500">*CPF</span>
+        </label>
+        <i class="fa fa-id-card absolute top-4 left-3 text-white"></i>
+        <input id="cpf" [(ngModel)]="client.cpf" type="cpf" mask="000.000.000-00" placeholder=""
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="cpf" [ngClass]="{
+        'border-green': hasText(client.cpf),
+        'border-red-500': validation && !client.cpf
+        }" (focus)="cpfFocused = true" (blur)="cpfFocused = false" autocomplete="cpf" />
+      </div>
+
+      <div class="flex flex-col mt-2 mb-1 relative">
+        <label for="phone" class="absolute top-3 left-9 transition-all duration-300 text-white bg-gray-900"
+          [class.label-active]="phoneFocused || client.phone">
+          {{ validation && !client.phone ? '' : 'Digite o telefone do cliente...' }}
+          <span *ngIf="validation && !client.phone" class="text-red-500">*Phone</span>
+        </label>
+        <i class="fa fa-phone absolute top-4 left-3 text-white"></i>
+        <input id="phone" [(ngModel)]="client.phone" type="tel" mask="(00) 0 0000-0000" placeholder=""
+          class="border-l-4 p-2 pl-10 h-12 border rounded bg-transparent text-white" name="phone" [ngClass]="{
+        'border-green': hasText(client.phone),
+        'border-red-500': validation && !client.phone
+        }" (focus)="phoneFocused = true" (blur)="phoneFocused = false" autocomplete="phone" />
+      </div>
+
+      <input (click)="saveClient()" type="submit" [value]="isEditMode ? 'Salvar' : 'Cadastrar'" type="submit"
+        value="Cadastrar" type="submit" value="Cadastrar"
+        class="submit-button cursor-pointer w-full mt-3 p-2 bg-green-600 rounded font-medium text-white" />
+
+    </form>
+
+    <section class="flex flex-col gap-4">
+      <article *ngFor="let client of clients" class="w-full bg-white rounded p-2 relative hover:scale-105 duration-200">
+        <p><span class="font-semibold">Nome: </span> {{ client.name }} </p>
+        <p><span class="font-semibold">E-mail: </span> {{ client.email }} </p>
+        <p><span class="font-semibold">CPF: </span> {{ client.cpf | mask: '000.000.000-00' }}</p>
+        <p><span class="font-semibold">Phone: </span> {{ client.phone | mask: '(00) 0 0000-0000' }}</p>
+
+        <button (click)="editClient(client)"
+          class="bg-blue-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-8 -top-2">
+          <i class="fa fa-pen fa-18 text-white" aria-hidden="true"></i>
+        </button>
+
+        <button (click)="removeClient(client.id)"
+          class="bg-red-500 w-7 h-7 flex items-center justify-center rounded-lg absolute right-0 -top-2">
+          <i class="fa fa-trash fa-18 text-white" aria-hidden="true"></i>
+        </button>
+      </article>
+    </section>
+  </main>
+</div>
+
+<app-footer />
