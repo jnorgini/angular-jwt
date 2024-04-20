@@ -34,6 +34,10 @@ export class AuthenticationService {
     return this.http.post<JwtAuth>(`${this.LOGIN_URL}`, user, HTTP_OPTIONS);
   }
 
+  getUsers(): Observable<User[]> {
+    return this.http.get<User[]>(this.USER_URL);
+  }
+
   getUserById(id: number): Observable<User> {
     return this.http.get<User>(`${this.USER_URL}/${id}`);
   }
