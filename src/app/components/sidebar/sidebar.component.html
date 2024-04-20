@@ -43,9 +43,9 @@
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
       (click)="dropdown()">
-      <i class="fa-solid fa-message text-white"></i>
+      <i class="fa-solid fa-users text-white"></i>
       <div class="flex justify-between w-full items-center">
-        <span class="text-[15px] ml-4 text-gray-200">Chatbox</span>
+        <span class="text-[15px] ml-4 text-gray-200">Users</span>
         <span class="text-sm">
           <i class="fa-solid" [ngClass]="{ 'fa-chevron-down': !isArrowUp, 'fa-chevron-up': isArrowUp }"></i>
         </span>
@@ -53,9 +53,9 @@
     </div>
 
     <div class="text-left text-sm font-whin mt-2 w-4/5 mx-auto text-gray-200" [ngClass]="{ 'hidden': isSubMenuHidden }">
-      <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Social</h1>
-      <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Personal</h1>
-      <h1 class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1">Friends</h1>
+      <h1 *ngFor="let user of users" class="cursor-pointer p-2 hover:bg-gray-700 rounded-md mt-1"
+      (click)="userInfo(user)">
+        {{ 'User: ' + user.username }}</h1>
     </div>
 
     <div class="p-2.5 mt-3 flex items-center rounded-md px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"

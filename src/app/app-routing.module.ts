@@ -12,10 +12,10 @@ import { ClientsComponent } from './pages/clients/clients.component';
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'sideboard', component: SidebarComponent, canActivate: [authGuard] },
-  { path: 'home', component: HomeComponent, canActivate: [authGuard]  },
+  { path: 'home', component: HomeComponent, canActivate: [authGuard] },
   { path: 'clients', component: ClientsComponent, canActivate: [authGuard] },
   { path: 'info', component: InfoComponent, canActivate: [authGuard] },
-  { path: 'register', component: RegisterComponent },
+  { path: 'register', component: RegisterComponent, canActivate: [authGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'edit/:id', component: EditUserComponent, canActivate: [authGuard] },
 ];

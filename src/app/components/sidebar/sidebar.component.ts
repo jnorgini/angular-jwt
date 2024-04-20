@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../../services/authentication.service';
 import { Router } from '@angular/router';
+import { User } from '../../models/User';
 
 @Component({
   selector: 'app-sidebar',
@@ -11,12 +12,26 @@ export class SidebarComponent implements OnInit {
   isSubMenuHidden = true;
   isArrowUp = false;
   isSidebarOpen!: boolean;
+  users: User[] = [];
+  selectedUser: User | null = null;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
   ngOnInit() {
     const storedSidebarState = localStorage.getItem('sidebarState');
     this.isSidebarOpen = storedSidebarState ? JSON.parse(storedSidebarState) : false;
+    this.getUsers();
+  }
+
+  getUsers() {
+    this.authService.getUsers().subscribe(data => {
+      this.users = data;
+    });
+  }
+
+  userInfo(user: User) {
+    this.selectedUser = user;
+    console.log(user);
   }
 
   open() {
