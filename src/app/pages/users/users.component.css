@@ -1,0 +1,4 @@
+tbody tr:hover td,
+tbody tr:hover th {
+  background-color: rgb(55 65 81);
+}

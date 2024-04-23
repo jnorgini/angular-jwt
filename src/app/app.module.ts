@@ -17,6 +17,7 @@ import { EditUserComponent } from './pages/edit-user/edit-user.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InfoComponent } from './components/info/info.component';
 import { ClientsComponent } from './pages/clients/clients.component';
+import { UsersComponent } from './pages/users/users.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ClientsComponent } from './pages/clients/clients.component';
     SidebarComponent,
     InfoComponent,
     ClientsComponent,
+    UsersComponent,
   ],
   imports: [
     BrowserModule,

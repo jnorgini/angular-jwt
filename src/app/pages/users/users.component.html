@@ -1,0 +1,60 @@
+<app-header></app-header>
+
+<div class="w-full h-full bg-gray-900 flex items-center justify-center">
+  <div class="w-3/4 mx-auto bg-gray-900 rounded-lg shadow-md shadow-black p-6">
+    <h1 class="text-2xl text-gray-400 text-center uppercase mb-4">Tabela de Funcionários</h1>
+
+    <div class="relative overflow-x-auto shadow-md sm:rounded-lg  max-h-96">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
+          <tr>
+            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+              Usuário
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Nome
+            </th>
+            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+              Sobrenome
+            </th>
+            <th scope="col" class="px-6 py-3">
+              E-mail
+            </th>
+            <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
+              Status
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Permissão
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let users of users" class="border-b border-gray-200 dark:border-gray-700">
+            <th scope="row"
+              class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap bg-gray-50 dark:text-white dark:bg-gray-800">
+              {{ users.username }}
+            </th>
+            <td class="px-6 py-4">
+              {{ users.firstName }}
+            </td>
+            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800">
+              {{ users.lastName }}
+            </td>
+            <td class="px-6 py-4">
+              {{ users.email }}
+            </td>
+            <td class="px-6 py-4 bg-gray-50 dark:bg-gray-800" [ngClass]="{'text-green-500': users.status === 'ONLINE'}">
+              {{ users.status }}
+            </td>
+            <td class="px-6 py-4">
+              {{ users.role }}
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+</div>
+
+<app-footer></app-footer>
