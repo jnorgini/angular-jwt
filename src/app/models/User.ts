@@ -6,6 +6,6 @@ export class User {
   lastName = '';
   password = '';
   confirmPassword = '';
-  status = 'ONLINE';
-  role = 'ADMIN';
+  status = '';
+  role = 'USER';
 }

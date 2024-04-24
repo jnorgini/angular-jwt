@@ -16,6 +16,7 @@ export class HeaderComponent implements OnInit {
   searchQuery: string = '';
   currentUser: User | null = null;
   currentUserVisible: boolean = false;
+  isAdmin: boolean = false;
 
   constructor(private authService: AuthenticationService, private router: Router) { }
 
@@ -62,6 +63,7 @@ export class HeaderComponent implements OnInit {
   userDetails(): void {
     this.authService.getCurrentUser().subscribe(user => {
       this.currentUser = user;
+      this.isAdmin = user?.role === 'ADMIN';
     });
   }
 
