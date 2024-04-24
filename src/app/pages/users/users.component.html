@@ -5,7 +5,7 @@
     <h1 class="text-2xl text-gray-400 text-center uppercase mb-4">Tabela de Funcionários</h1>
 
     <div class="relative overflow-x-auto shadow-md sm:rounded-lg  max-h-96">
-      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+      <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-300">
         <thead class="text-xs text-gray-700 uppercase dark:text-gray-400">
           <tr>
             <th scope="col" class="px-6 py-3 bg-gray-50 dark:bg-gray-800">
@@ -25,6 +25,9 @@
             </th>
             <th scope="col" class="px-6 py-3">
               Permissão
+            </th>
+            <th scope="col" class="px-6 py-3">
+              Ações
             </th>
           </tr>
         </thead>
@@ -48,6 +51,10 @@
             </td>
             <td class="px-6 py-4">
               {{ users.role }}
+            </td>
+            <td class="px-6 py-4">
+              <i class="fa-solid fa-pen-to-square mr-2 text-xl text-blue-600 hover:text-blue-300"></i>
+              <i class="fa-solid fa-trash-can text-red-500 text-xl hover:text-red-300"></i>
             </td>
           </tr>
         </tbody>
