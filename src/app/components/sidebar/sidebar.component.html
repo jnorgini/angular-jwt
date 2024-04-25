@@ -28,51 +28,59 @@
 </div>
 
 <div [ngClass]="{'sidebar': true, 'open': isSidebarOpen, 'closed': !isSidebarOpen}"
-  class="fixed top-48 lg:left-0 left-[-300px] w-[300px] overflow-auto text-center bg-gray-800 rounded-md">
+  class="fixed bottom-32 lg:left-0 left-[-300px] w-[300px] overflow-auto text-center bg-gray-800 rounded-md shadow-lg">
 
-  <div class="text-gray-100 text-xl">
-    <div class="p-2.5 mt-1 flex items-center">
-      <i class="fa-solid fa-layer-group px-2 py-2 bg-blue-600 rounded-md"></i>
-      <h1 class="font-bold text-gray-200 text-[20px] ml-3">Sidebar</h1>
-      <i class="fa-solid fa-square-xmark ml-32 text-white hover:text-gray-300 text-2xl cursor-pointer lg:hidden"
+  <div class="text-gray-100 text-2xl font-bold py-4">
+    <div class="pt-4 pr-4 pl-2 pb-1 flex items-center justify-center">
+      <i class="fa-solid fa-layer-group px-4 py-4 bg-blue-600 rounded-full text-white"></i>
+      <h1 class="text-gray-200 text-xl ml-2">Sidebar</h1>
+      <i class="fa-solid fa-times ml-auto text-white text-2xl cursor-pointer lg:hidden hover:text-gray-300"
         (click)="close()"></i>
     </div>
   </div>
-  <hr class="mt-2 mb-2 text-gray-600">
+  <hr class="mt-2 mb-4 border-gray-600">
 
-  <div class="font-extralight">
-    <div class="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      routerLink="/home">
-      <i class="fa-solid fa-house text-white"></i>
-      <span class="text-[17px] ml-4 text-gray-200">Home</span>
+  <div class="font-light">
+    <div class="p-4 hover:bg-blue-700 duration-300 cursor-pointer" routerLink="/home">
+      <a class="flex items-center text-gray-200">
+        <i class="fa-solid fa-house text-white"></i>
+        <span class="ml-4">Home</span>
+      </a>
     </div>
 
-    <div class="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      routerLink="/clients">
-      <i class="fa-solid fa-shop text-white"></i>
-      <span class="text-[17px] ml-4 text-gray-200">Clients</span>
+    <div class="p-4 hover:bg-blue-700 duration-300 cursor-pointer" routerLink="/clients">
+      <a class="flex items-center text-gray-200">
+        <i class="fa-solid fa-shop text-white"></i>
+        <span class="ml-4">Clients</span>
+      </a>
     </div>
 
-    <div class="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white">
-      <i class="fa-solid fa-users text-white"></i>
-      <div class="flex justify-between w-full items-center" routerLink="/users">
-        <span class="text-[17px] ml-4 text-gray-200">Users</span>
+    <div class="p-4 hover:bg-blue-700 duration-300 cursor-pointer" routerLink="/users">
+      <a class="flex items-center text-gray-200">
+        <i class="fa-solid fa-users text-white"></i>
+        <span class="ml-4">Users</span>
+      </a>
+    </div>
+
+    <div class="p-4 hover:bg-blue-700 duration-300 cursor-pointer" routerLink="/info">
+      <a class="flex items-center text-gray-200">
+        <i class="fa-solid fa-circle-info text-white"></i>
+        <span class="ml-4">Infos</span>
+      </a>
+    </div>
+
+    <hr class="my-4 border-gray-600">
+
+    <div class="p-4 hover:bg-blue-700 duration-300 cursor-pointer" (click)="logout()">
+      <div class="flex items-center text-gray-200">
+        <i class="fa-solid fa-sign-out text-white"></i>
+        <span class="ml-4">Logout</span>
       </div>
     </div>
+  </div>
 
-    <div class="p-2.5 mt-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      routerLink="/info">
-      <i class="fa-solid fa-circle-info text-white"></i>
-      <span class="text-[17px] ml-4 text-gray-200">Infos</span>
-    </div>
-
-    <hr class="mt-2 mb-2 text-gray-600">
-
-    <div class="p-2.5 mt-3 mb-3 flex items-center px-4 duration-300 cursor-pointer hover:bg-blue-600 text-white"
-      (click)="logout()">
-      <i class="fa-solid fa-sign-out text-white"></i>
-      <span class="text-[17px] ml-4 text-gray-200">Logout</span>
-    </div>
+  <div class="text-xs text-gray-500 py-2 px-4 mt-auto">
+    © 2024 Company Name. All rights reserved.
   </div>
 
 </div>
