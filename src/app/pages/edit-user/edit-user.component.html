@@ -1,7 +1,7 @@
-<div class="edit-page-wrapper">
-  <div class="edit-page
-  p-10 shadow-lg bg-gray-900 border-2 border-white rounded-md text-white">
-    <h3 class="text-3xl text-center font-semibold py-5">Edit User</h3>
+<div class="edit-page">
+  <div class="edit-page-content bg-gray-900
+    p-10 shadow-lg shadow-black rounded-md text-white">
+    <h3 class="text-3xl text-center font-semibold pb-5 pt-0">Edit User</h3>
     <form class="flex flex-col">
       <div class="flex flex-col mt-4 mb-1 relative">
         <label for="firstName" class="teste absolute top-3 left-9 transition-all duration-300 text-white"
@@ -18,10 +18,6 @@
         }"
         (focus)="firstNameFocused = true"
         (blur)="firstNameFocused = false">
-        <div *ngIf="validation && !user.firstName"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*First Name is required.</p>
-        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
         <label for="lastName" class="absolute top-3 left-9 transition-all duration-300 text-white"
@@ -38,10 +34,6 @@
          }"
          (focus)="lastNameFocused = true"
          (blur)="lastNameFocused = false">
-        <div *ngIf="validation && !user.lastName"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*Last Name is required.</p>
-        </div>
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
         <label for="username" class="absolute top-3 left-9 transition-all duration-300 text-white"
@@ -56,18 +48,13 @@
             'border-green': hasText(user.username),
             'border-red-500': validation && !user.username }"
             (focus)="usernameFocused = true"
-            (blur)="usernameFocused = false"
-            autocomplete="username">
-        <div *ngIf="validation && !user.username"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*Username is required</p>
-        </div>
+            (blur)="usernameFocused = false" autocomplete="username">
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
         <label for="email" class="absolute top-3 left-9 transition-all duration-300 text-white"
           [class.label-active]="emailFocused || user.email">
           {{ validation && !user.email ? '' : 'E-mail' }}
-          <span *ngIf="validation && !user.email" class="text-red-500">E-mail</span>
+          <span *ngIf="validation && !user.email" class="text-red-500">*E-mail</span>
         </label>
         <i class="fa fa-envelope absolute top-4 left-3 text-white"></i>
         <input id="email" class="border-l-4 pl-10 h-12 border border-gray-300 rounded bg-transparent text-white"
@@ -77,11 +64,7 @@
             'border-red-500': validation && !user.email }"
             (focus)="emailFocused = true"
             (blur)="emailFocused = false"
-            autocomplete="email">
-        <div *ngIf="validation && !user.email"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*E-mail is required.</p>
-        </div>
+          autocomplete="email">
       </div>
       <div class="flex flex-col mt-4 mb-1 relative">
         <label for="password" class="absolute top-3 left-9 transition-all duration-300 text-white"
@@ -96,14 +79,7 @@
           [ngClass]="{
             'border-green': hasText(user.password),
             'border-red-500': validation && !user.password
-            }"
-            (focus)="passwordFocused = true"
-            (blur)="passwordFocused = false"
-            autocomplete="current-password">
-        <div *ngIf="validation && !user.password"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*Password is required.</p>
-        </div>
+            }" (focus)="passwordFocused = true" (blur)="passwordFocused = false" autocomplete="current-password">
         <i *ngIf="passwordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
           (click)="togglePasswordVisibility(passwordInput)"></i>
         <i *ngIf="!passwordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
@@ -122,14 +98,8 @@
           [ngClass]="{
           'border-green': hasText(user.confirmPassword),
           'border-red-500': validation && !user.confirmPassword
-          }"
-          (focus)="confirmPasswordFocused = true"
-          (blur)="confirmPasswordFocused = false"
+          }" (focus)="confirmPasswordFocused = true" (blur)="confirmPasswordFocused = false"
           autocomplete="confirmPassowrd">
-        <div *ngIf="validation && !user.password"
-          class="bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-2 rounded" role="alert">
-          <p>*Passowrd is required.</p>
-        </div>
         <i *ngIf="confirmPasswordVisible" class="fa fa-eye absolute top-4 right-3 text-white cursor-pointer"
           (click)="toggleConfirmPasswordVisibility(confirmPasswordInput)"></i>
         <i *ngIf="!confirmPasswordVisible" class="fa fa-eye-slash absolute top-4 right-3 text-white cursor-pointer"
@@ -145,10 +115,9 @@
           <option value="ONLINE" selected hidden></option>
         </select>
       </div>
-      <button class="bg-indigo-900 p-2 rounded mt-3 text-white" (click)="updateUser()">Save</button>
+      <div class="flex">
+        <button class="flex-1 bg-blue-800 hover:bg-blue-600 p-2 rounded mt-3 mr-2 text-white" (click)="updateUser()">Save</button>
+        <button class="flex-1 bg-gray-600 hover:bg-gray-500 p-2 rounded mt-3 text-white" (click)="close()">Close</button>
+      </div>
     </form>
-    <div class="flex justify-center mt-5">
-      <span>Finished modifying your account?</span> <a class="text-white ml-2 hover:underline cursor-pointer"
-         (click)="logout()">Login again here</a>
-    </div>
   </div>

@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
 import { catchError } from 'rxjs';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-edit-user',
@@ -21,14 +22,18 @@ export class EditUserComponent implements OnInit {
   passwordFocused = false;
   confirmPasswordFocused = false;
 
-  constructor(private authService: AuthenticationService, private route: ActivatedRoute, private router: Router) { }
+  @Output() userUpdated: EventEmitter<User> = new EventEmitter<User>();
+
+  constructor(
+    private authService: AuthenticationService,
+    private dialog: MatDialog,
+    @Inject(MAT_DIALOG_DATA) public data: any
+  ) { }
 
   ngOnInit(): void {
-    this.route.params.subscribe(params => {
-      const userId = params['id'];
-      this.authService.getUserById(userId).subscribe(user => {
-        this.user = user;
-      });
+    const userId = this.data.id;
+    this.authService.getUserById(userId).subscribe(user => {
+      this.user = user;
     });
   }
 
@@ -42,18 +47,12 @@ export class EditUserComponent implements OnInit {
         console.log('Failed to update user.');
         throw error;
       })
-    ).subscribe(() => {
+    ).subscribe((updatedUser: User) => {
       console.log('User updated successfully!');
       this.user = new User();
       this.validation = false;
+      this.userUpdated.emit(updatedUser);
     });
-  }
-
-  logout() {
-    this.authService.logout();
-    this.router.navigate(['/login']);
-    window.location.reload();
-    console.log('Disconnected. Token has been removed.');
   }
 
   validateFields(): boolean {
@@ -96,5 +95,8 @@ export class EditUserComponent implements OnInit {
     return !!inputValue;
   }
 
-}
+  close() {
+    this.dialog.closeAll();
+  }
 
+}

@@ -1,27 +1,21 @@
-.edit-page-wrapper {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  background-image: url('../../../assets/bg-img.jpg');
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: bottom;
-  width: 100%;
+.edit-page {
+  position: fixed;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.edit-page-content {
+  max-width: 80%;
 }
 
 .edit-page {
   width: 35%;
-  border-color: rgba(255, 255, 255, .2);
-  border-radius: 10px;
 }
 
 .edit-page input::placeholder {
   color: white;
-}
-
-.edit-page button:hover {
-  background-color: rgb(79 70 229);
 }
 
 .edit-page button:active {
@@ -29,9 +23,6 @@
   transition: transform 0.2s ease;
 }
 
-.edit-page a:hover {
-  color: rgb(68, 238, 68);
-}
 
 .edit-page label {
   transform: translateY(0);
