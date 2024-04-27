@@ -2,7 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserComponent } from '../edit-user/edit-user.component';
+import { EditUserComponent } from '../../dialogs/edit-user/edit-user.component';
+import { ConfirmationComponent } from '../../dialogs/confirmation/confirmation.component';
+import { catchError } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -45,6 +47,30 @@ export class UsersComponent implements OnInit {
     } else {
       console.error('User not found');
     }
+  }
+
+  deleteUser(id: number) {
+    this.authService.delete(id).pipe(
+      catchError((error) => {
+        throw error;
+      })
+    ).subscribe(() => {
+      console.log('User successfully removed!');
+      this.users = this.users.filter(user => user.id !== id);
+    });
+  }
+
+  openConfirmation(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      width: '500px',
+      closeOnNavigation: true,
+      data: 'The user will be removed permanently.'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.deleteUser(id);
+      }
+    });
   }
 
   userDetails(): void {
