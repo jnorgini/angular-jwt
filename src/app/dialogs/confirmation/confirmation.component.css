@@ -1,0 +1,20 @@
+.confirmation-page {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.confirmation-page-content {
+  max-width: 80%;
+}
+
+.confirmation-page {
+  width: 35%;
+}
+
+.confirmation-page button:active {
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}

@@ -1,0 +1,16 @@
+<div class="confirmation-page">
+  <div class="bg-gray-900
+p-10 shadow-lg shadow-black rounded-md text-white">
+    <h3 class="text-3xl text-center font-semibold pb-5 pt-0 text-gray-500">Confirmation</h3>
+    <div class="text-center text-lg pb-2 text-gray-300 font-sans">
+      <p><i class="fa-solid fa-triangle-exclamation text-red-500"></i> This cannot be undone.</p>
+      <p>{{ data }}</p>
+    </div>
+    <div class="flex">
+      <button class="flex-1 bg-red-800 hover:bg-red-600 p-2 rounded mt-3 mr-2 text-gray-300"
+        (click)="onConfirm('yes')">Delete</button>
+      <button class="flex-1 bg-gray-600 hover:bg-gray-500 p-2 rounded mt-3 text-gray-300"
+        (click)="close()">Close</button>
+    </div>
+  </div>
+</div>
