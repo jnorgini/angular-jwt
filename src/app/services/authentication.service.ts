@@ -46,6 +46,10 @@ export class AuthenticationService {
     localStorage.removeItem('jwtToken');
   }
 
+  delete(id: number): Observable<User> {
+    return this.http.delete<User>(`${this.USER_URL}/${id}`);
+  }
+
   decodeToken(token: string): any {
     return jwtDecode(token);
   }
