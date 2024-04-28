@@ -3,6 +3,8 @@ import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
 import { ViewportScroller } from '@angular/common';
 import { catchError } from 'rxjs';
+import { MatDialog } from '@angular/material/dialog';
+import { ConfirmationComponent } from '../../dialogs/confirmation/confirmation.component';
 
 @Component({
   selector: 'app-clients',
@@ -20,7 +22,11 @@ export class ClientsComponent implements OnInit {
   searchQuery: string = '';
   isEditMode = false;
 
-  constructor(private clientService: ClientService, private viewportScroller: ViewportScroller) { }
+  constructor(
+    private clientService: ClientService,
+    private viewportScroller: ViewportScroller,
+    public dialog: MatDialog
+  ) { }
 
   ngOnInit(): void {
     this.getClient();
@@ -110,6 +116,18 @@ export class ClientsComponent implements OnInit {
         console.log('Client successfully removed!');
         this.clients = this.clients.filter(client => client.id !== id);
       })
+  }
+
+  openConfirmation(id: number) {
+    const dialogRef = this.dialog.open(ConfirmationComponent, {
+      closeOnNavigation: true,
+      data: 'The client will be removed permanently.'
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'yes') {
+        this.removeClient(id);
+      }
+    });
   }
 
   hasText(inputValue: string): boolean {
