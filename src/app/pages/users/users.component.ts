@@ -62,7 +62,6 @@ export class UsersComponent implements OnInit {
 
   openConfirmation(id: number) {
     const dialogRef = this.dialog.open(ConfirmationComponent, {
-      width: '500px',
       closeOnNavigation: true,
       data: 'The user will be removed permanently.'
     });
