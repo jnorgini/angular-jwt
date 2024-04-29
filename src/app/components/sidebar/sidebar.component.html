@@ -1,5 +1,5 @@
 <div *ngIf="!isSidebarOpen"
-  class="sidebar-mini fixed top-0 bottom-0 lg:left-0 left-0 p-2 w-16 flex flex-col items-center justify-center bg-gray-800 rounded-r-md">
+  class="sidebar-mini fixed top-0 bottom-0 lg:left-0 left-0 p-2 w-16 flex flex-col items-center justify-center bg-gray-800 rounded-r-md  border-l-2 border-orange-500">
   <i class="fa-solid fa-bars text-white text-2xl cursor-pointer" (click)="open()"></i>
   <div class="mt-5">
     <hr>
@@ -28,7 +28,8 @@
 </div>
 
 <div [ngClass]="{'sidebar': true, 'open': isSidebarOpen, 'closed': !isSidebarOpen}"
-  class="fixed bottom-32 lg:left-0 left-[-300px] w-[300px] overflow-auto text-center bg-gray-800 rounded-md shadow-lg">
+  class="fixed bottom-32 lg:left-0 left-[-300px] w-[300px] overflow-auto text-center bg-gray-800 rounded-md shadow-lg
+  border-l-4 border-orange-500">
 
   <div class="text-gray-100 text-2xl font-bold py-4">
     <div class="pt-4 pr-4 pl-2 pb-1 flex items-center justify-center">
