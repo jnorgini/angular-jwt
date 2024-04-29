@@ -79,4 +79,15 @@ export class UsersComponent implements OnInit {
     });
   }
 
+  filterUsers(searchQuery: string): void {
+    if (!searchQuery.trim()) {
+      this.getUsers();
+    } else {
+      this.users = this.users.filter(user =>
+        user.username.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        user.email.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+    }
+  }
+
 }
