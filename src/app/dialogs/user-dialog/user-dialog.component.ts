@@ -2,8 +2,7 @@ import { Component, EventEmitter, Inject, OnInit, Output } from '@angular/core';
 import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
 import { catchError } from 'rxjs';
-import { ActivatedRoute, Router } from '@angular/router';
-import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-user-dialog',
