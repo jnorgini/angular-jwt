@@ -2,9 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { User } from '../../models/User';
 import { AuthenticationService } from '../../services/authentication.service';
 import { MatDialog } from '@angular/material/dialog';
-import { EditUserComponent } from '../../dialogs/edit-user/edit-user.component';
-import { ConfirmationComponent } from '../../dialogs/confirmation/confirmation.component';
 import { catchError } from 'rxjs';
+import { UserDialogComponent } from '../../dialogs/user-dialog/user-dialog.component';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-users',
@@ -32,7 +32,7 @@ export class UsersComponent implements OnInit {
   openEditUserModal(userId: number) {
     const user = this.users.find(user => user.id === userId);
     if (user) {
-      const dialogRef = this.dialog.open(EditUserComponent, {
+      const dialogRef = this.dialog.open(UserDialogComponent, {
         width: '500px',
         closeOnNavigation: true,
         data: Object.assign({}, user)
@@ -61,7 +61,7 @@ export class UsersComponent implements OnInit {
   }
 
   openConfirmation(id: number) {
-    const dialogRef = this.dialog.open(ConfirmationComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       data: 'The user will be removed permanently.'
     });

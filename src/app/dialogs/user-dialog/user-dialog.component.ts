@@ -6,11 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogRef } from '@angular/material/dialog';
 
 @Component({
-  selector: 'app-edit-user',
-  templateUrl: './edit-user.component.html',
-  styleUrl: './edit-user.component.css'
+  selector: 'app-user-dialog',
+  templateUrl: './user-dialog.component.html',
+  styleUrl: './user-dialog.component.css'
 })
-export class EditUserComponent implements OnInit {
+export class UserDialogComponent implements OnInit {
   user = new User();
   validation = false;
   passwordVisible = false;

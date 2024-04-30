@@ -14,12 +14,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { HomeComponent } from './pages/home/home.component';
 import { TokenInterceptor } from './auth/token.interceptor';
-import { EditUserComponent } from './dialogs/edit-user/edit-user.component';
 import { SidebarComponent } from './components/sidebar/sidebar.component';
 import { InfoComponent } from './pages/info/info.component';
 import { ClientsComponent } from './pages/clients/clients.component';
 import { UsersComponent } from './pages/users/users.component';
-import { ConfirmationComponent } from './dialogs/confirmation/confirmation.component';
+import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
+import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component';
 
 @NgModule({
   declarations: [
@@ -29,12 +29,12 @@ import { ConfirmationComponent } from './dialogs/confirmation/confirmation.compo
     FooterComponent,
     RegisterComponent,
     HomeComponent,
-    EditUserComponent,
+    UserDialogComponent,
     SidebarComponent,
     InfoComponent,
     ClientsComponent,
     UsersComponent,
-    ConfirmationComponent,
+    ConfirmationDialogComponent,
   ],
   imports: [
     BrowserModule,

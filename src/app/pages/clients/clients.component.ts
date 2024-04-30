@@ -4,7 +4,7 @@ import { ClientService } from '../../services/client.service';
 import { ViewportScroller } from '@angular/common';
 import { catchError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmationComponent } from '../../dialogs/confirmation/confirmation.component';
+import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
 
 @Component({
   selector: 'app-clients',
@@ -119,7 +119,7 @@ export class ClientsComponent implements OnInit {
   }
 
   openConfirmation(id: number) {
-    const dialogRef = this.dialog.open(ConfirmationComponent, {
+    const dialogRef = this.dialog.open(ConfirmationDialogComponent, {
       closeOnNavigation: true,
       data: 'The client will be removed permanently.'
     });
