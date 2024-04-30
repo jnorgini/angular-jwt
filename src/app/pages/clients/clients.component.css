@@ -1,25 +1,9 @@
-.home-page label {
-  transform: translateY(0);
+tbody tr:hover td,
+tbody tr:hover th {
+  background-color: rgb(55 65 81);
 }
 
-.submit-button:hover {
-  background-color: rgb(21 128 61);
-}
-
-.submit-button:active {
+button:active {
   transform: translateY(2px);
   transition: transform 0.2s ease;
-}
-
-.home-page .label-active {
-  color: rgb(118, 205, 118);
-  transform: translateY(-22px);
-  font-size: 0.8rem;
-  padding: 0 5px;
-}
-
-.border-green {
-  outline: none;
-  border-color: transparent;
-  box-shadow: 0 0 0 1px rgb(68, 238, 68);
 }
