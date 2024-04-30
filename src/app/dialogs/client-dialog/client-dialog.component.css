@@ -1,0 +1,54 @@
+.client-page {
+  position: fixed;
+  top: 52%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+}
+
+.client-page-content {
+  max-width: 80%;
+}
+
+.client-page {
+  width: 35%;
+}
+
+.client-page input::placeholder {
+  color: white;
+}
+
+.client-page button:active {
+  transform: translateY(2px);
+  transition: transform 0.2s ease;
+}
+
+
+.client-page label {
+  transform: translateY(0);
+}
+
+.client-page .label-active {
+  color: rgb(68, 238, 68);
+  transform: translateY(-22px);
+  font-size: 0.8rem;
+  background-color: rgb(17 24 39);
+  padding: 0 5px;
+}
+
+.border-green {
+  outline: none;
+  border-color: transparent;
+  box-shadow: 0 0 0 1px rgb(68, 238, 68);
+}
+
+.client-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  /* backdrop-filter: blur(2px); */
+  z-index: 9998;
+}

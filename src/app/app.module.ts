@@ -20,6 +20,7 @@ import { ClientsComponent } from './pages/clients/clients.component';
 import { UsersComponent } from './pages/users/users.component';
 import { ConfirmationDialogComponent } from './dialogs/confirmation-dialog/confirmation-dialog.component';
 import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component';
+import { ClientDialogComponent } from './dialogs/client-dialog/client-dialog.component';
 
 @NgModule({
   declarations: [
@@ -35,6 +36,7 @@ import { UserDialogComponent } from './dialogs/user-dialog/user-dialog.component
     ClientsComponent,
     UsersComponent,
     ConfirmationDialogComponent,
+    ClientDialogComponent,
   ],
   imports: [
     BrowserModule,
