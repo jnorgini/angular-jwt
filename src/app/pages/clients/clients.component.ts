@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { Client } from '../../models/Client';
 import { ClientService } from '../../services/client.service';
-import { ViewportScroller } from '@angular/common';
 import { catchError } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmationDialogComponent } from '../../dialogs/confirmation-dialog/confirmation-dialog.component';
+import { ClientDialogComponent } from '../../dialogs/client-dialog/client-dialog.component';
 
 @Component({
   selector: 'app-clients',
@@ -15,94 +15,50 @@ export class ClientsComponent implements OnInit {
   client = new Client();
   clients: Client[] = [];
   validation = false;
-  nameFocused = false;
-  emailFocused = false;
-  cpfFocused = false;
-  phoneFocused = false;
   searchQuery: string = '';
-  isEditMode = false;
 
   constructor(
     private clientService: ClientService,
-    private viewportScroller: ViewportScroller,
     public dialog: MatDialog
   ) { }
 
   ngOnInit(): void {
-    this.getClient();
+    this.getClients();
   }
 
-  getClient() {
+  getClients() {
     this.clientService.getClients().subscribe(data => {
       this.clients = data;
     });
   }
 
-  isEmailValid(email: string): boolean {
-    const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    return emailPattern.test(email);
-  }
-
-  saveClient(): void {
-    if (this.isEditMode) {
-      this.updateClient(this.client);
-    } else {
-      this.createClient();
-    }
-  }
-
-  editClient(client: Client) {
-    this.clientService.getClient(client.id)
-      .subscribe((data: Client) => {
-        this.client = { ...data };
-        this.isEditMode = true;
-        this.viewportScroller.scrollToPosition([0, 0]);
+  openCreateClient() {
+    this.dialog.open(ClientDialogComponent, {
+      closeOnNavigation: true,
+      data: new Client()
+    })
+      .afterClosed().subscribe(() => {
+        this.getClients();
       });
   }
 
-  createClient(): void {
-    this.validation = true;
-    if (!this.client.name || !this.client.email || !this.client.cpf || !this.client.phone) {
-      console.log('Por favor, preencha todos os campos');
-      return;
-    }
-    if (!this.isEmailValid(this.client.email)) {
-      console.log('Por favor, insira um email válido');
-      return;
-    }
-    this.clientService.addClient(this.client)
-      .pipe(
-        catchError((error) => {
-          console.log('Error when trying to register a new client.');
-          throw error;
-        })
-      ).subscribe((newClient: Client) => {
-        console.log('Client successfully registered!');
-        this.clients.push(newClient);
-        this.client = new Client();
-        this.validation = false;
+  openEditClient(userId: number) {
+    const client = this.clients.find(client => client.id === userId);
+    if (client) {
+      const dialogRef = this.dialog.open(ClientDialogComponent, {
+        closeOnNavigation: true,
+        data: Object.assign({}, client)
       });
-  }
 
-  updateClient(client: Client): void {
-    this.validation = true;
-    this.clientService.updateClient(client)
-      .pipe(
-        catchError((error) => {
-          console.log('Error when trying to update the client.', error);
-          throw error;
-        }),
-      )
-      .subscribe((updatedClient: Client) => {
-        console.log('Client updated successfully!');
-        const index = this.clients.findIndex(c => c.id === updatedClient.id);
+      dialogRef.componentInstance.clientUpdated.subscribe((updatedClient: Client) => {
+        const index = this.clients.findIndex(u => u.id === updatedClient.id);
         if (index !== -1) {
           this.clients[index] = updatedClient;
         }
-        this.client = { ...updatedClient };
-        this.client = new Client();
-        this.validation = false;
       });
+    } else {
+      console.error('User not found');
+    }
   }
 
   removeClient(id: number) {
@@ -136,7 +92,7 @@ export class ClientsComponent implements OnInit {
 
   filterClients(searchQuery: string): void {
     if (!searchQuery.trim()) {
-      this.getClient();
+      this.getClients();
     } else {
       this.clients = this.clients.filter(client =>
         client.name.toLowerCase().includes(searchQuery.toLowerCase()) ||

@@ -33,7 +33,6 @@ export class UsersComponent implements OnInit {
     const user = this.users.find(user => user.id === userId);
     if (user) {
       const dialogRef = this.dialog.open(UserDialogComponent, {
-        width: '500px',
         closeOnNavigation: true,
         data: Object.assign({}, user)
       });
