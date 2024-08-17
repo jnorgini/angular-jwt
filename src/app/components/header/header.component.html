@@ -42,8 +42,8 @@
                     {{ currentUser?.username }}</p>
                   <p><i class="fa-solid fa-address-book mr-2"></i><span class="font-semibold">Name: </span>
                     {{ currentUser?.firstName }} {{ currentUser?.lastName}}</p>
-                    <p><i class="fas fa-envelope mr-2"></i><span class="font-semibold">E-mail: </span>
-                      {{ currentUser?.email }}</p>
+                  <p><i class="fas fa-envelope mr-2"></i><span class="font-semibold">E-mail: </span>
+                    {{ currentUser?.email }}</p>
                   <p><i class="fas fa-user-shield mr-2"></i><span class="font-semibold">Role: </span>
                     {{ currentUser?.role === 'ADMIN' ? 'Admin' : currentUser?.role }}</p>
                 </article>
@@ -51,10 +51,10 @@
 
               <div class="flex pt-2 pb-2" *ngIf="currentUser?.role === 'ADMIN'">
 
-                <button [routerLink]="['/edit', currentUser?.id]"
+                <!-- <button [routerLink]="['/edit', currentUser?.id]"
                   class="flex-1 mt-4 py-2 px-4 mr-1 bg-blue-600 text-white font-semibold rounded hover:bg-blue-800 focus:outline-none">
                   Edit User <i class="ml-1 fa-solid fa-pen-to-square"></i>
-                </button>
+                </button> -->
 
                 <!-- <button (click)="logout()"
                 class="flex-1 mt-4 py-2 px-4 ml-1 bg-blue-700 text-white font-semibold rounded hover:bg-blue-800 focus:outline-none">
